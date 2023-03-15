@@ -8,6 +8,7 @@ import { BreadCrumb } from 'primereact/breadcrumb';
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import LoadTable from './LoadTable';
 //  import { ProductService } from './service/ProductService';
 
 export default function EventPresent() {
@@ -43,12 +44,7 @@ export default function EventPresent() {
                 <TabMenu model={items} style={{direction:'rtl'}} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)}  />
             </div>
              {/* קריאה לקומפוננטת טבלה */}
-            <DataTable value={products} tableStyle={{ minWidth: '50rem', paddingRight: '30px', direction:'rtl'}} >
-                <Column field="code" header="Code"></Column>
-                <Column field="name" header="Name"></Column>
-                <Column field="category" header="Category"></Column>
-                <Column field="quantity" header="Quantity"></Column>
-            </DataTable>
+             <LoadTable/>
         </div>
     )
 }
