@@ -26,7 +26,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* text-align: right; */
-  direction: rtl;
+  /* direction: rtl; */
 }
 
 .card {
@@ -39,7 +39,7 @@ body {
 }
 
 div {
-  direction: rtl;
+  /* direction: rtl; */
   text-align: center;
 }
 

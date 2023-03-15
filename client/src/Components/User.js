@@ -26,9 +26,9 @@ export default function User() {
     ];
 
     return (
-        <div className="card flex justify-content-center">
+        <div className="card flex justify-content-center" style={{direction:'rtl'}}>
             {/* <Toast ref={toast} /> */}
-            <Menu model={items} />
+            <Menu model={items} style={{direction:'rtl'}}/>
         </div>
     )
 }
