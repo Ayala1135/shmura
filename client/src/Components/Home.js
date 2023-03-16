@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom"
 //import LoadTable from './Components/LoadTable';
 
 
+import Login_SignUp from './Login&SignUp';
 
 const Home = () => {
 
@@ -28,6 +29,7 @@ const Home = () => {
                 <TabMenu model={items} />
             </div>
             <SideBar ></SideBar>
+            
         </>
     )
 }

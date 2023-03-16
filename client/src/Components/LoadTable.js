@@ -22,7 +22,6 @@ export default function LoadTable() {
     let emptyProduct = {
         id: null,
         name: '',
-        image: null,
         description: '',
         category: null,
         price: 0,
@@ -237,11 +236,10 @@ export default function LoadTable() {
     };
 
     const header = (
-        <div className="flex flex-wrap gap-2 align-items-center justify-content-between" style={{direction:'rtl'}}>
-            <h4 style={{direction:'rtl'}} className="m-0">Manage Products</h4>
+        <div className="flex flex-wrap gap-2  justify-content-between" style={{mergin:'right',direction:'rtl'}}>
             <span className="p-input-icon-left" style={{direction:'rtl'}}>
                 <i className="pi pi-search"style={{direction:'rtl'}} />
-                <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
+                <InputText style={{merginRight:'right',direction:'rtl', right:'$'}} type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
             </span>
         </div>
     );
@@ -278,7 +276,6 @@ export default function LoadTable() {
                    /* */
                     <Column field="code" header="Code" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column field="name" header="Name" sortable style={{ minWidth: '16rem' }}></Column>
-                    <Column field="image" header="Image" body={imageBodyTemplate}></Column>
                     <Column field="price" header="Price" body={priceBodyTemplate} sortable style={{ minWidth: '8rem' }}></Column>
                     <Column field="category" header="Category" sortable style={{ minWidth: '10rem' }}></Column>
                     <Column field="rating" header="Reviews" body={ratingBodyTemplate} sortable style={{ minWidth: '12rem' }}></Column>

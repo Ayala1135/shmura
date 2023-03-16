@@ -65,7 +65,7 @@ const Secretary = () => {
     return (
         <><div style={{direction:'rtl'}}>
             {/* <Toast ref={toast} /> */}
-            <Menu model={items} />
+            <Menu model={items} style={{borderColor:'white'}}/>
         </div></>
     )
 }

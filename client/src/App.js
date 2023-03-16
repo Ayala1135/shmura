@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import EventPresent from './Components/EventsPresent';
 import Home from './Components/Home';
+import Login_SignUp from './Components/Login&SignUp';
 import Secretary from './Components/Secretary';
 import User from './Components/User';
 import LoadTable from './Components/LoadTable';
