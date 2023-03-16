@@ -5,6 +5,10 @@ import 'primereact/resources/primereact.css';
 import 'primeicons/primeicons.css'; 
 //import 'primeflex/primeflex.css';
 import SideBar from './SideBar';
+import {useNavigate} from "react-router-dom"
+//import LoadTable from './Components/LoadTable';
+
+
 
 const Home = () => {
 
@@ -16,6 +20,7 @@ const Home = () => {
         { label: 'צרי קשר', icon: 'pi pi-fw pi-comments'}
     ];
 
+    const navigate = useNavigate();
 
     return (
         <>

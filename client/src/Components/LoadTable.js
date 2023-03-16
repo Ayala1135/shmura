@@ -15,6 +15,8 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { Tag } from 'primereact/tag';
+import fetchData from '../hooks/UseGetData';
+
 
 export default function LoadTable() {
     let emptyProduct = {
@@ -40,11 +42,12 @@ export default function LoadTable() {
     const toast = useRef(null);
     const dt = useRef(null);
 
-    useEffect(() => {
-        //במקום השורה הזאת:ProductService.getProducts().then((data) => setProducts(data));
-        //לעשות קריאת GET 
-        //
-    }, []);
+    // useEffect(() => {
+    //     //במקום השורה הזאת:ProductService.getProducts().then((data) => setProducts(data));
+    //     //לעשות קריאת GET 
+    //     //
+    // }, []);
+    fetchData('https://localhost:5000/user');
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });

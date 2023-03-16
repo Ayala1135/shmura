@@ -9,6 +9,8 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import LoadTable from './LoadTable';
+import {useNavigate} from "react-router-dom"
+
 //  import { ProductService } from './service/ProductService';
 
 export default function EventPresent() {
@@ -19,8 +21,9 @@ export default function EventPresent() {
     }, []);
 
     const [activeIndex, setActiveIndex] = useState(3);
+    const navigate = useNavigate();
     const items = [
-        {label: 'כל האירועים והפרוייקטים'},
+        {label: 'כל האירועים והפרוייקטים', command:()=>{navigate("/LoadTable")}},
         {label: 'רשומות לפרוייקטים'}
       
     ];
