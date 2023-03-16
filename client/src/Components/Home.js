@@ -5,6 +5,7 @@ import 'primereact/resources/primereact.css';
 import 'primeicons/primeicons.css'; 
 //import 'primeflex/primeflex.css';
 import SideBar from './SideBar';
+import Login_SignUp from './Login&SignUp';
 
 const Home = () => {
 
@@ -23,6 +24,7 @@ const Home = () => {
                 <TabMenu model={items} />
             </div>
             <SideBar ></SideBar>
+            
         </>
     )
 }

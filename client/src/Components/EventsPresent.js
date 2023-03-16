@@ -30,11 +30,11 @@ export default function EventPresent() {
 
     return (
         <div className="card">
-            <BreadCrumb model={items2} home={home} style={{ paddingRight: '30px' ,direction:'rtl'}}/>
-            <Divider align="right">
+            <BreadCrumb model={items2} home={home} style={{ paddingRight: '30px' ,direction:'rtl', borderColor:'white'}}/>
+            <Divider align="right" style={{ fontSize: '20px' , direction:'ltr'}}>
                 <div className="inline-flex align-items-center" style={{ fontSize: '20px' ,direction:'rtl'}}>
                     <i className="pi pi-calendar mr-2 " style={{ fontSize: '20px' ,direction:'rtl'}}></i>
-                    <b style={{ fontSize: '20px' , direction:'rtl' }}>אירועים ופרוייקטים</b>
+                    <b style={{ fontSize: '20px' , direction:'ltr'}}>אירועים ופרוייקטים</b>
                 </div>
             </Divider>
             {/* <h3 style={{ paddingRight: '30px' }}>רשימת אירועים</h3> */}

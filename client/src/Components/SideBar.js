@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
 import User from './User';
+import Secretary from './Secretary';
 
 function SideBar() {
     const [visibleRight, setVisibleRight] = useState(false);
 
     return (
         <div >
-            <div style={{direction:'rtl'}}>
+            <div style={{ direction: 'rtl' }}>
                 <Button style={{
                     position: 'absolute',
                     width: '50px',
@@ -20,17 +21,17 @@ function SideBar() {
                     borderRadius: '0px'
                 }}
                     icon="pi pi-arrows-h,pi pi-bars"
-                    // iconPos='left'
                     onClick={() => setVisibleRight(true)}
                 />
-            </div>
+            </div >
             <Sidebar
-            
+                style={{ textAlign: 'center', width: 'fit-content', width: '-moz-fit-content' }}
                 visible={visibleRight}
                 position="right"
-                 onHide={() => setVisibleRight(false)}
+                onHide={() => setVisibleRight(false)}
             >
-                <User></User>
+                {/* <User ></User> */}
+                <Secretary></Secretary>
             </Sidebar>
 
 

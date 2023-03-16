@@ -9,16 +9,16 @@ export default function User() {
     let items = [
         { template: (item, options) => {
             return (
-                <label className='w-full p-link flex align-items-center'>
-                    <Avatar icon='pi pi-fw pi-user' className="  mr-3 align-items-center"  shape="circle" />
-                    <div className="flex flex-column align direction-rtl">
+                <label stile={{borderColor:'white'}} className=' align-items-center'>
+                    <Avatar icon='pi pi-fw pi-user' className="align-items-center"  shape="circle" />
+                    <div  className="flex flex-column align direction-rtl">
                         <span className="font-bold ">אילה בא-גד</span><br></br>
                         <span className="text-sm">חברת שמורה</span>
                     </div>
                 </label>
             )}},  
             { separator: true},
-        { label: 'פרטים אישיים', icon: 'pi pi-fw pi-user' },
+        { label: 'פרטים אישיים' , icon: 'pi pi-fw pi-user' },
         { label: 'הרשמה לאירוע', icon: 'pi pi-calendar-plus' },
         { label: 'העדפות דיוורים', icon: 'pi pi-send', url: 'https://www.responder.co.il/'},
         { label: 'פניות', icon: 'pi pi-comment' },
@@ -26,9 +26,9 @@ export default function User() {
     ];
 
     return (
-        <div className="card flex justify-content-center" style={{direction:'rtl'}}>
+        <div className="card flex justify-content-right" style={{direction:'rtl'}}>
             {/* <Toast ref={toast} /> */}
-            <Menu model={items} style={{direction:'rtl'}}/>
+            <Menu model={items } style={{direction:'rtl',borderColor:'white'}}/>
         </div>
     )
 }
