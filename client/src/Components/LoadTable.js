@@ -15,7 +15,7 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { Tag } from 'primereact/tag';
-import fetchData from '../hooks/UseGetData';
+import fetchData, { useGetData } from '../hooks/UseGetData';
 
 
 export default function LoadTable() {
@@ -41,12 +41,8 @@ export default function LoadTable() {
     const toast = useRef(null);
     const dt = useRef(null);
 
-    // useEffect(() => {
-    //     //במקום השורה הזאת:ProductService.getProducts().then((data) => setProducts(data));
-    //     //לעשות קריאת GET 
-    //     //
-    // }, []);
-    fetchData('https://localhost:5000/user');
+    const {data, loading, error, refetch} = useGetData('user')
+    useEffect(()=>{console.log(data)},[data]);
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -268,7 +264,7 @@ export default function LoadTable() {
             <div className="card">
                 <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
-                <DataTable ref={dt} /*value={products}*/ selection={selectedProducts} onSelectionChange={(e) => setSelectedProducts(e.value)}
+                <DataTable ref={dt} /*value={data}*/ selection={selectedProducts} onSelectionChange={(e) => setSelectedProducts(e.value)}
                         dataKey="id"  paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" globalFilter={globalFilter} header={header}>

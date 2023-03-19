@@ -1,4 +1,5 @@
-const express = require("express")
+const express = require("express");
+const cors = require('cors');
 //const cron = require('node-cron');
 const mails = require("./services/mails.js");
 
@@ -16,8 +17,14 @@ const filterRouter = require("./routers/filter-router")
 const authRouter = require("./routers/auth-router")
 
 const app = express()
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8000
 app.use(express.json())
+app.use(cors());
+/*
+app.use(cors({
+origin: 'http://localhost:5000'
+}));
+*/
 
 app.use("/user", userRouter)
 app.use("/partner", partnerRouter)
