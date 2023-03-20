@@ -7,9 +7,12 @@ module.exports = (sequelize,DataTypes)=>{
             autoIncrement: true,
             primaryKey: true
         },
-        userName: DataTypes.STRING,
-        userAddress: DataTypes.STRING,
+        userFirstName: DataTypes.STRING,
+        userLastName: DataTypes.STRING,
+        userStreet: DataTypes.STRING,
+        userStreetNumber: DataTypes.INTEGER,
         userCity: DataTypes.STRING,
+        userBirthday: DataTypes.DATE,
         userPhone: DataTypes.INTEGER,
         userEmail: {
             type: DataTypes.STRING,
@@ -26,9 +29,10 @@ module.exports = (sequelize,DataTypes)=>{
         },
         userPassword: DataTypes.STRING,
         userStudyPlace: DataTypes.STRING,
+        userGraduationYear: DataTypes.INTEGER,
         userJoiningDate: DataTypes.DATE,
         userJob: DataTypes.STRING,
-        userAge: DataTypes.INTEGER
+        userBusiness: DataTypes.STRING
     },
     {
         freezeTableName: true,

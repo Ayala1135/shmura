@@ -1,15 +1,52 @@
 const db = require("../models/index.js");
 //const bcrypt = require("bcrypt");
 const mails = require("../services/mails.js");
-
+const readExcel = require('read-excel-file/node')
 const Op = db.Sequelize.Op;
 const User = db.user;
 const Role = db.role;
-
+var Excel = require('exceljs');
+const xlsx  = require('xlsx')
 
 
 //get all users
 exports.getAllusers = (req, res) => {
+
+    // const file = reader.readFile('./test.xlsx')
+    // const workbook = xlsx.readFile('./test.xlsx');
+    // const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+    
+    // const columnA = [];
+    
+    // for (let z in worksheet) {
+    //   if(z.toString()[0] === 'A'){
+    //     columnA.push(worksheet[z].v);
+    //   }
+    // }
+    
+    // console.log(columnA);
+
+//ליצור מערך של כל הכותורות הנדרשות, לעבור בפוקנציה הזאתי ולבדוק אם הרס במקום ה0 מוכל במערך, אם כן - פוש לדאטה ושליחה את הדאטה לקרייט יוזר
+    let obj = ['דואר אלקטרוני','שם פרטי','שם משפחה','שנת סיום לימודים','מקום לימודים','מקום עבודה','תחום עבודה','עיר','טלפון']
+    let data = []
+  
+    const sheets = file.SheetNames
+      
+    for(let i = 0; i < sheets.length; i++)
+    {
+       const temp = reader.utils.sheet_to_json(
+            file.Sheets[file.SheetNames[i]])
+       temp.forEach((res) => {
+        //if
+        //   data.push(res)
+        //   console.log(res)
+       })
+    }
+      
+    // Printing data
+   
+
+
     User.findAll({})
         .then(data => {
             res.send(data);
@@ -27,7 +64,7 @@ exports.createUser = async (req, res) => {
     //const { userName, userAddress, userCity, userPhone, userEmail, userRole, userPassword } = req.body;
     var newUser = await User.create(req);
     if (newUser) {
-        mails.sendEmail(req.userEmail, `${req.userName} היקרה! נרשמת בהצלחה למערכת "שמורה במבול". נשמח לראותך...`, "🌈☔");
+        mails.sendEmail(req.userEmail, `${req.userFirstName}, ${req.userLastName} היקרה! נרשמת בהצלחה למערכת "שמורה במבול". נשמח לראותך...`, "🌈☔");
         return res.status(201).json({ message: 'New user created'});
     }
     else

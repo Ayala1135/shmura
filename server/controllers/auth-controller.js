@@ -33,14 +33,14 @@ const login = async (req, res) => {
     res.send("Logged In")
 }
 const register = async (req, res) => {
-    const { userName, userAddress, userCity, userPhone, userEmail, userRole, userPassword, userStudyPlace, userJoiningDate, userJob, userAge } = req.body;
+    const { userFirstName, userLastName, userStreet, userStreetNumber, userCity, userBirthday, userPhone, userEmail, userRole, userPassword, userStudyPlace, userGraduationYear, userJoiningDate, userJob, userBusiness } = req.body;
     if (!userEmail || !userPassword)
         return res.status(400).json({ message: 'All fields are required' })
     const duplicate = await User.findOne({ where: { userEmail: userEmail } })
     if (duplicate)
         return res.status(409).json({ message: "Duplicate user's email" })
     const hashedPwd = await bcrypt.hash(userPassword, 10);
-    req.body = { userName, userAddress, userCity, userPhone, userEmail, userRole, userPassword: hashedPwd, userStudyPlace, userJoiningDate, userJob, userAge};
+    req.body = { userFirstName, userLastName, userStreet, userStreetNumber, userCity, userBirthday, userPhone, userEmail, userRole, userPassword, userStudyPlace, userGraduationYear, userJoiningDate, userJob, userBusiness};
     userController.createUser(req.body,res);
 }
 
