@@ -21,23 +21,20 @@ export default function SubMenu(props) {
     const [activeIndex, setActiveIndex] = useState(3);
     const [data, setData] = useState([]);
     const [col, setCol] = useState([]);
-    
+
     const navigate = useNavigate();
 
-    const loadMyData =  (num) => {
+    const loadMyData = async (num) => {
         try {
-
-            var res = null
-            if (num == 1){
-                res=fetchData('http://localhost:8000/user')
-                setData(res.data)
-                var keys = Object.keys(data[0])
+            if (num == 1) {
+                const res = await fetchData('http://localhost:8000/user')
+                setData(res)
+                var keys = Object.keys(res[0])
                 setCol(keys)
-                debugger
-                console.log(col,"sdfghj");
-                }
+                console.log(col, "sdfghj");
+            }
             if (num == 2) {
-                res =  fetchData('http://localhost:8000/partner')
+                const res = fetchData('http://localhost:8000/partner')
                 console.log(res);
                 setData(res.data)
             }
@@ -50,12 +47,16 @@ export default function SubMenu(props) {
         { label: label2, command: () => { setPress2(true); setPress1(false); loadMyData(2) } }
     ];
 
+    useEffect(() => { console.log({ col }); }, [col])
+
+    useEffect(() => { console.log({ data }); }, [data])
+
 
     return (
         <div className="card">
             <TabMenu model={items} style={{ direction: 'rtl' }} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
-            {press1&& <><LoadTableww data={data} col={col}/></>}       
-            {press2&& <><LoadTableww data={data}/></>}
+            {press1 && <><LoadTableww data={data} col={col} /></>}
+            {press2 && <><LoadTableww data={data} /></>}
             {/* <LoadTable data={udata}></LoadTable> */}
             {/* <LoadTableww data={udata} /> */}
         </div>
