@@ -27,21 +27,21 @@ exports.getAllusers = (req, res) => {
     // console.log(columnA);
 
 //ליצור מערך של כל הכותורות הנדרשות, לעבור בפוקנציה הזאתי ולבדוק אם הרס במקום ה0 מוכל במערך, אם כן - פוש לדאטה ושליחה את הדאטה לקרייט יוזר
-    let obj = ['דואר אלקטרוני','שם פרטי','שם משפחה','שנת סיום לימודים','מקום לימודים','מקום עבודה','תחום עבודה','עיר','טלפון']
-    let data = []
+    // let obj = ['דואר אלקטרוני','שם פרטי','שם משפחה','שנת סיום לימודים','מקום לימודים','מקום עבודה','תחום עבודה','עיר','טלפון']
+    // let data = []
   
-    const sheets = file.SheetNames
+    // const sheets = file.SheetNames
       
-    for(let i = 0; i < sheets.length; i++)
-    {
-       const temp = reader.utils.sheet_to_json(
-            file.Sheets[file.SheetNames[i]])
-       temp.forEach((res) => {
-        //if
-        //   data.push(res)
-        //   console.log(res)
-       })
-    }
+    // for(let i = 0; i < sheets.length; i++)
+    // {
+    //    const temp = reader.utils.sheet_to_json(
+    //         file.Sheets[file.SheetNames[i]])
+    //    temp.forEach((res) => {
+    //     //if
+    //     //   data.push(res)
+    //     //   console.log(res)
+    //    })
+    // }
       
     // Printing data
    
@@ -64,7 +64,7 @@ exports.createUser = async (req, res) => {
     //const { userName, userAddress, userCity, userPhone, userEmail, userRole, userPassword } = req.body;
     var newUser = await User.create(req);
     if (newUser) {
-        mails.sendEmail(req.userEmail, `${req.userFirstName}, ${req.userLastName} היקרה! נרשמת בהצלחה למערכת "שמורה במבול". נשמח לראותך...`, "🌈☔");
+        mails.sendEmail(req.userEmail, `${req.userFirstName} ${req.userLastName}, היקרה! נרשמת בהצלחה למערכת "שמורה במבול". נשמח לראותך...`, "🌈☔");
         return res.status(201).json({ message: 'New user created'});
     }
     else

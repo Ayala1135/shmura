@@ -15,19 +15,20 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { Tag } from 'primereact/tag';
-import fetchData, { useGetData } from '../hooks/UseGetData';
+import fetchData from '../hooks/UseGetData';
 
 
-export default function LoadTable() {
+export default function LoadTable({data}) {
     let emptyProduct = {
-        id: null,
-        name: '',
-        description: '',
-        category: null,
-        price: 0,
-        quantity: 0,
-        rating: 0,
-        inventoryStatus: 'INSTOCK'
+        // id: null,
+        // name: '',
+        // description: '',
+        // category: null,
+        // price: 0,
+        // quantity: 0,
+        // rating: 0,
+        // inventoryStatus: 'INSTOCK'
+
     };
 
     const [products, setProducts] = useState(null);
@@ -41,8 +42,18 @@ export default function LoadTable() {
     const toast = useRef(null);
     const dt = useRef(null);
 
-    const {data, loading, error, refetch} = useGetData('user')
-    useEffect(()=>{console.log(data)},[data]);
+    useEffect(() => {
+        // const x=async()=>{
+
+        //     var res =await  fetchData('https://localhost:5000/user');
+        //     console.log(res.data)
+        //     setProducts(res.data)
+        // }
+        // x()
+        setProducts(data)
+    }, []);
+   
+    
 
     const formatCurrency = (value) => {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
@@ -78,12 +89,12 @@ export default function LoadTable() {
                 const index = findIndexById(product.id);
 
                 _products[index] = _product;
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Updated!', life: 3000 });
             } else {
                 _product.id = createId();
                 _product.image = 'product-placeholder.svg';
                 _products.push(_product);
-                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Created!', life: 3000 });
             }
 
             setProducts(_products);
@@ -108,7 +119,7 @@ export default function LoadTable() {
         setProducts(_products);
         setDeleteProductDialog(false);
         setProduct(emptyProduct);
-        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Deleted', life: 3000 });
     };
 
     const findIndexById = (id) => {
@@ -264,12 +275,12 @@ export default function LoadTable() {
             <div className="card">
                 <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
-                <DataTable ref={dt} /*value={data}*/ selection={selectedProducts} onSelectionChange={(e) => setSelectedProducts(e.value)}
+                <DataTable ref={dt} /*value={products}*/ selection={selectedProducts} onSelectionChange={(e) => setSelectedProducts(e.value)}
                         dataKey="id"  paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" globalFilter={globalFilter} header={header}>
                     <Column selectionMode="multiple" exportable={false}></Column>
-                   /* */
+                    {/**/ }
                     <Column field="code" header="Code" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column field="name" header="Name" sortable style={{ minWidth: '16rem' }}></Column>
                     <Column field="price" header="Price" body={priceBodyTemplate} sortable style={{ minWidth: '8rem' }}></Column>

@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
-import User from './User';
-import Secretary from './Secretary';
+import ContentSideBarStaff from './ContentSideBarStaff';
+//import User from './User';
 
 function SideBar() {
     const [visibleRight, setVisibleRight] = useState(false);
-
+    const handleMouseOver = () => {
+        setVisibleRight(true);
+      }
+    const handleMousedown = () => {
+        setVisibleRight(false);
+      } 
     return (
         <div >
             <div style={{ direction: 'rtl' }}>
@@ -21,7 +26,8 @@ function SideBar() {
                     borderRadius: '0px'
                 }}
                     icon="pi pi-arrows-h,pi pi-bars"
-                    onClick={() => setVisibleRight(true)}
+                    onMouseEnter={handleMouseOver}
+                    // onMouseOut={handleMousedown}
                 />
             </div >
             <Sidebar
@@ -29,12 +35,11 @@ function SideBar() {
                 visible={visibleRight}
                 position="right"
                 onHide={() => setVisibleRight(false)}
+
             >
-                {/* <User ></User> */}
-                <Secretary></Secretary>
+                  <ContentSideBarStaff></ContentSideBarStaff>
             </Sidebar>
-
-
+          
         </div>
     );
 }
