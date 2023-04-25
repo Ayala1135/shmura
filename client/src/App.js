@@ -21,6 +21,7 @@ import PresentUserScreen from './Components/Screens/PresentUserScreen';
 import AttendanceScreen from './Components/Screens/AttendanceScreen';
 import PresentPaymentScreen from './Components/Screens/PresentPaymentScreen';
 import AboutUsScreen from './Components/Screens/AboutUsScreen';
+import TableHeader from './Components/TableHeader';
 
 // import { Sidebar } from 'primereact/sidebar';
 
@@ -47,6 +48,7 @@ function App() {
           <Route exact path='Sign' element={<SignUpScreen/>}></Route>
 
           <Route exact path='PresentUsers' element={<PresentUserScreen/>}></Route>
+          <Route exact path='TableHeader' element={<TableHeader/>}></Route>
           <Route exact path='PresentPayments' element={<PresentPaymentScreen/>}></Route>
 
 
