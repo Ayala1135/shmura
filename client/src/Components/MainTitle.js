@@ -8,7 +8,7 @@ export default function MainTitle(props) {
     const icon2 = props.icon;
     return (
         <div style={{ background: 'var(--surface-ground)', padding:'0' }}>
-            <Divider align="center" style={{ fontSize: '20px', direction: 'ltr' }}>
+            <Divider align="center" style={{ fontSize: '20px', direction: 'ltr', background: 'var(--surface-ground)' }}>
                 <div className="inline-flex align-items-center" style={{ fontSize: '20px', direction: 'rtl', background: 'var(--surface-ground)' }} >
                     <i className={icon2} style={{ fontSize: '20px', direction: 'rtl', background: 'var(--surface-ground)' }}></i>
                     <b style={{ fontSize: '20px', direction: 'ltr', background: 'var(--surface-ground)' }}>{text}</b>

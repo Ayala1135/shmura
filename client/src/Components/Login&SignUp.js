@@ -6,19 +6,30 @@ import fetchDataWithParams from '../hooks/UseGet';
 import {useNavigate} from "react-router-dom"
 import SignUp from './SignUp';
 import fetchData from '../hooks/UseGetData';
+import UserContext from './userContext';
+import React, { useContext} from 'react';
 
 
 export default function Login_SignUp() {
 const [objLogin,setObjLogin] = useState([])
+
+ const {user,setUser }= useContext(UserContext);
+ //const setUser = useContext(UserContext);
+
+ console.log(setUser);
     const handleSubmit=async()=>{
-        //לשנות את הקישור לקישור מתאים (אולי)
+
         fetchDataWithParams('http://localhost:8000/auth/login',objLogin);
+        console.log(objLogin);
+        setUser(objLogin)
+        console.log(user);
+        
         // fetchData('http://localhost:8000/auth/login');
         
     }
     const navigate = useNavigate();
     const onChange=(key,selected)=>{
-        debugger
+     
         console.log(objLogin)
         setObjLogin((prev) =>({ ...prev, [key]: selected }));
     }

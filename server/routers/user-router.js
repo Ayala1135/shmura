@@ -12,7 +12,7 @@ userRouter.put("/",userController.updateUser);
 //delete User by ID
 userRouter.delete("/",userController.deleteUser);
 //get all users by id
-//.get("/:id",userController.findUsersById);
+userRouter.get("/:id",userController.findUsersById);
 
 //get all roles
 userRouter.get("/role", userController.getAllroles);

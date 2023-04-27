@@ -31,7 +31,7 @@ const login = async (req, res) => {
     // //const accessToken= jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET)
     // //res.setHeader('Authorization', `Bearer ${accessToken}`)
     // //res.json({ accessToken: accessToken })
-    res.send("Logged In")
+    res.send(foundUser)
 }
 const register = async (req, res) => {
     const { userFirstName, userLastName, userStreet, userStreetNumber, userCity, userBirthday, userPhone, userEmail, userRole, userPassword, userStudyPlace, userGraduationYear, userJoiningDate, userJob, userBusiness } = req.body;

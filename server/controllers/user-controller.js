@@ -120,20 +120,20 @@ exports.deleteUser = (req, res) => {
 };
 
 //get all users by id
-// exports.findUsersById = (req, res) => {
-//     const currentId = req.params.id;
-//     var condition = currentId ? { idUser: { [Op.like]: `%${currentId}%` } } : null;
-//     User.findAll({ where: condition })
-//         .then(data => {
-//             res.send(data);
-//         })
-//         .catch(err => {
-//             res.status(500).send({
-//                 message:
-//                     err.message || "Some error occurred while get all users by id."
-//             });
-//         });
-// };
+exports.findUsersById = (req, res) => {
+    const currentId = req.params.id;
+    var condition = currentId ? { idUser: { [Op.like]: `%${currentId}%` } } : null;
+    User.findAll({ where: condition })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while get all users by id."
+            });
+        });
+};
 
 
 //get all roles

@@ -21,10 +21,12 @@ import PresentUserScreen from './Components/Screens/PresentUserScreen';
 import AttendanceScreen from './Components/Screens/AttendanceScreen';
 import PresentPaymentScreen from './Components/Screens/PresentPaymentScreen';
 import AboutUsScreen from './Components/Screens/AboutUsScreen';
-import UserPersonalAreaScreen from './Components/Screens/UserPersonalAreaScreen';
 import PresentEventsScreen from './Components/Screens/PresentEventsScreen';
 import PresentAttendanceScreen from './Components/Screens/PresentAttendanceScreen';
 import PresentTaskScreen from './Components/Screens/PresentTaskScreen';
+
+import PersonalEreaScreen from './Components/Screens/PersonalEreaScreen';
+
 
 // import { Sidebar } from 'primereact/sidebar';
 
@@ -55,12 +57,13 @@ function App() {
           <Route exact path='PresentEvents' element={<PresentEventsScreen/>}></Route>
           <Route exact path='PresentAttendance' element={<PresentAttendanceScreen/>}></Route>
           <Route exact path='PresentTask' element={<PresentTaskScreen/>}></Route>
+          
+          <Route exact path='PresentPersonal' element={<PersonalEreaScreen/>}></Route>
 
 
 
           
-          <Route exact path='UserPersonalArea' element={<UserPersonalAreaScreen/>}></Route>
-
+         
 
 
 
