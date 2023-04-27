@@ -1,6 +1,6 @@
 import { TabMenu } from 'primereact/tabmenu';
 import {useNavigate} from "react-router-dom"
-
+import logo_shmura from '../Pictures-Video/logo_shmura.png'
 
 export default function Toolbar() {
     const navigate = useNavigate();
@@ -14,9 +14,16 @@ export default function Toolbar() {
 
     return (
         <>
-            <div className="card" style={{ direction: 'rtl' }}>
-                <TabMenu model={items} />
+        <div className="top-bar"></div>
+        <div className="header">
+        <img src={logo_shmura} alt="logo" className="logo" style={{ width: '8%', height:'8%'  }} />
+                <TabMenu model={items} style={{ marginBottom: 0 }} />
             </div>
+        <div style={{ position: '-moz-initial',  marginTop: '17', top: '20', left: '0',  width:' 100%', height: '20px',
+          background: 'linear-gradient(to right, #add8e6, #87cefa, #6495ed)', transition: 'background-color 0.5s ease-in-out'}}></div>
         </>
+
+    
+      
     )
 }
