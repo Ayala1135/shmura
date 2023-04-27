@@ -23,7 +23,7 @@ const [objLogin,setObjLogin] = useState([])
         setObjLogin((prev) =>({ ...prev, [key]: selected }));
     }
     return (
-        <div className="card align-items-center" style={{marginLeft:'700px', width:'500px'}}>
+        <div className="card align-items-center" style={{marginLeft:'700px', width:'500px', alignItems: 'center'}}>
             <div className="flex flex-column md:flex-row"><br/>
                 <div className="w-full md:w-5 flex flex-column align-items-s justify-content-center gap-3 py-5"><br/>
                     <div className="flex flex-wrap justify-content-center align-items-center gap-2"><br/>
@@ -42,7 +42,7 @@ const [objLogin,setObjLogin] = useState([])
                 </div>
                 <div className="w-full md:w-2">
                     <Divider layout="horizontal" className="flex md:hidden" align="center">
-                        <b>OR</b>
+                        <b>או</b>
                     </Divider>
                 </div>
                 <div className="w-full md:w-5 flex align-items-center justify-content-center py-5">

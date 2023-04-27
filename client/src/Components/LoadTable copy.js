@@ -1,40 +1,42 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { classNames } from 'primereact/utils';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { InputText } from 'primereact/inputtext';
+import { Dropdown } from 'primereact/dropdown';
+import { InputNumber } from 'primereact/inputnumber';
 import { Button } from 'primereact/button';
+import { ProgressBar } from 'primereact/progressbar';
 import { Calendar } from 'primereact/calendar';
 import { MultiSelect } from 'primereact/multiselect';
 import { Slider } from 'primereact/slider';
+import { Tag } from 'primereact/tag';
 import { TriStateCheckbox } from 'primereact/tristatecheckbox';
-import { InputText } from 'primereact/inputtext';
-import { InputNumber } from 'primereact/inputnumber';
-import { Toast } from 'primereact/toast';
-// import { ProductService } from './service/ProductService';
+import { CustomerService } from '../Components/Screens/Serv';
+
 
 export default function LoadTableww({ data, col }) {
-    //הגדרת רשומה ריקה למילוי
-    let emptyRow = '';
-    //    col.map((item, index)=>{ item: null })
+    console.log(data, "ooooooooooooooootttttttttttttttttttttttttooooooo");
 
     const [customers, setCustomers] = useState(null);
-    //; setCustomers(data)
-
-    const [submitted, setSubmitted] = useState(false);
-    const [myData, setMyData] = useState(data);
-    const [selectedProducts, setSelectedProducts] = useState(null);
-    const [deleteProductsDialog, setDeleteProductsDialog] = useState(false);
-
-    const [globalFilter, setGlobalFilter] = useState(null);
-    const [row, setRow] = useState(emptyRow);
+   //; setCustomers(data)
     const [filters, setFilters] = useState(null);
     const [loading, setLoading] = useState(false);
     const [globalFilterValue, setGlobalFilterValue] = useState('');
-    const [representatives] = useState();
+    const [representatives] = useState([
+        { name: 'Amy Elsner', image: 'amyelsner.png' },
+        { name: 'Anna Fali', image: 'annafali.png' },
+        { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
+        { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
+        { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
+        { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
+        { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
+        { name: 'Onyama Limba', image: 'onyamalimba.png' },
+        { name: 'Stephen Shaw', image: 'stephenshaw.png' },
+        { name: 'XuXue Feng', image: 'xuxuefeng.png' }
+    ]);
     const [statuses] = useState(['unqualified', 'qualified', 'new', 'negotiation', 'renewal']);
-    const toast = useRef(null);
-    const dt = useRef(null);
 
     const getSeverity = (status) => {
         switch (status) {
@@ -56,51 +58,31 @@ export default function LoadTableww({ data, col }) {
     };
     var keys = [];
 
-    useEffect(() => { if (col) initFilters() }, [col])
-    useEffect(() => { console.log('filters:', filters); }, [filters])
-
+    console.log(data, "ooooooooooooooohgoooooooo");
     useEffect(() => {
+// 
+if(data.length>0){
+debugger
 
-        if (data?.length > 0) {
-            keys = Object.keys(data[0]);
-            // console.log(customers, "h)))))))))))))))))))hhh");
-        }
-        //     // CustomerService.getCustkeysomersMedium().then((data) => {
-        //     setCustomers(data);
+    keys = Object.keys(data[0]);
+     console.log(keys, "hhhhhhhhhhhhhhhhhh");
+    // console.log(customers, "h)))))))))))))))))))hhh");
+    
+    console.log(data,"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+}
+    //     // CustomerService.getCustkeysomersMedium().then((data) => {
+    //     setCustomers(data);
 
         // setLoading(false);
         // });
         // initFilters();
-        }, [data]);
+    }, [data]);
+    const getCustomers = (data) => {
+        return [...(data || [])].map((d) => {
+            d.date = new Date(d.date);
 
-        // const getCustomers = (data) => {
-        //     return [...(data || [])].map((d) => {
-        //         d.date = new Date(d.date);
-        //         return d;
-        //     });
-        // };
-
-    const createId = () => {
-        let id = '';
-        let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-
-        return id;
-    };
-
-    const findIndexById = (id) => {
-        let index = -1;
-
-        for (let i = 0; i < myData.length; i++) {
-            if (myData[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-        return index;
+            return d;
+        });
     };
 
     const formatDate = (value) => {
@@ -109,6 +91,10 @@ export default function LoadTableww({ data, col }) {
             month: '2-digit',
             year: 'numeric'
         });
+    };
+
+    const formatCurrency = (value) => {
+        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     };
 
     const clearFilter = () => {
@@ -126,42 +112,40 @@ export default function LoadTableww({ data, col }) {
     };
 
     const initFilters = () => {
-        console.log('in initFilters');
-        let filtersObj = {}
-        col.map((c) => {
-            if (c.includes('date')) { filtersObj[c] = { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] } }
-            else filtersObj[c] = { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] }
-        })
-        console.log(filtersObj, "filtersObj");
         setFilters({
             global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-            ...filtersObj
+            name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+            'country.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+            representative: { value: null, matchMode: FilterMatchMode.IN },
+            date: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
+            balance: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
+            status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
+            activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
+            verified: { value: null, matchMode: FilterMatchMode.EQUALS }
         });
         setGlobalFilterValue('');
-    }
+    };
 
-    // const onCategoryChange = (e) => {
-    //     let _product = { ...myData };
+    const renderHeader = () => {
+        return (
+            <div className="flex justify-content-between">
+                <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined onClick={clearFilter} />
+                <span className="p-input-icon-left">
+                    <i className="pi pi-search" />
+                    <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
+                </span>
+            </div>
+        );
+    };
 
-    //     _product['category'] = e.value;
-    //     setMyData(_product);
-    // };
-
-    // const onInputChange = (e, name) => {
-    //     const val = (e.target && e.target.value) || '';
-    //     let ro = { ...row };
-    //     ro[`${name}`] = val;
-
-    //     setMyData(ro);
-    // };
-
-    // const onInputNumberChange = (e, name) => {
-    //     const val = e.value || 0;
-    //     let ro = { ...row };
-
-    //     ro[`${name}`] = val;
-    //     setRow(ro);
-    // };
+    const countryBodyTemplate = (rowData) => {
+        return (
+            <div className="flex align-items-center gap-2">
+                <img alt="flag" src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png" className={`flag flag-${rowData.country.code}`} style={{ width: '24px' }} />
+                <span>{rowData.country.name}</span>
+            </div>
+        );
+    };
 
     const filterClearTemplate = (options) => {
         return <Button type="button" icon="pi pi-times" onClick={options.filterClearCallback} severity="secondary"></Button>;
@@ -175,13 +159,12 @@ export default function LoadTableww({ data, col }) {
         return <div className="px-3 pt-0 pb-3 text-center">Filter by Country</div>;
     };
 
-    const representativeBodyTemplate = (rowData, item) => {
-        // const representative = rowData.representative;
+    const representativeBodyTemplate = (rowData) => {
+        const representative = rowData.representative;
 
         return (
             <div className="flex align-items-center gap-2">
-                <h4>{rowData[item]}</h4>
-                {/* <img alt={representative.name} src={`https://primefaces.org/cdn/primereact/images/avatar/${representative.image}`} width="32" /> */}
+              <h1>hjs</h1>  {/* <img alt={representative.name} src={`https://primefaces.org/cdn/primereact/images/avatar/${representative.image}`} width="32" /> */}
                 {/* <span>{representative.name}</span> */}
             </div>
         );
@@ -194,18 +177,42 @@ export default function LoadTableww({ data, col }) {
     const representativesItemTemplate = (option) => {
         return (
             <div className="flex align-items-center gap-2">
-                {/* <img alt={option.name} src={`https://primefaces.org/cdn/primereact/images/avatar/${option.image}`} width="32" />
-                <span>{option.name}</span> */}
+                <img alt={option.name} src={`https://primefaces.org/cdn/primereact/images/avatar/${option.image}`} width="32" />
+                <span>{option.name}</span>
             </div>
         );
+    };
+
+    const dateBodyTemplate = (rowData) => {
+        return formatDate(rowData.date);
     };
 
     const dateFilterTemplate = (options) => {
         return <Calendar value={options.value} onChange={(e) => options.filterCallback(e.value, options.index)} dateFormat="mm/dd/yy" placeholder="mm/dd/yyyy" mask="99/99/9999" />;
     };
 
+    const balanceBodyTemplate = (rowData) => {
+        return formatCurrency(rowData.balance);
+    };
+
     const balanceFilterTemplate = (options) => {
         return <InputNumber value={options.value} onChange={(e) => options.filterCallback(e.value, options.index)} mode="currency" currency="USD" locale="en-US" />;
+    };
+
+    const statusBodyTemplate = (rowData) => {
+        return <Tag value={rowData.status} severity={getSeverity(rowData.status)} />;
+    };
+
+    const statusFilterTemplate = (options) => {
+        return <Dropdown value={options.value} options={statuses} onChange={(e) => options.filterCallback(e.value, options.index)} itemTemplate={statusItemTemplate} placeholder="Select One" className="p-column-filter" showClear />;
+    };
+
+    const statusItemTemplate = (option) => {
+        return <Tag value={option} severity={getSeverity(option)} />;
+    };
+
+    const activityBodyTemplate = (rowData) => {
+        return <ProgressBar value={rowData.activity} showValue={false} style={{ height: '6px' }}></ProgressBar>;
     };
 
     const activityFilterTemplate = (options) => {
@@ -234,48 +241,32 @@ export default function LoadTableww({ data, col }) {
             </div>
         );
     };
-
-
-//just searching
-    const headerw = (
-        <div className="flex flex-wrap gap-2  justify-content-between" style={{ mergin: 'right', direction: 'rtl' }}>
-            <span className="p-input-icon-left" style={{ direction: 'rtl' }}>
-                <i className="pi pi-search" style={{ direction: 'rtl' }} />
-                <InputText style={{ merginRight: 'right', direction: 'rtl', right: '$' }} type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
-            </span>
-        </div>
-    );
-
-//also clear buuton
-    const header = () => {
-        return (
-            <div className="flex justify-content-between">
-                <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined onClick={clearFilter} />
-                <span className="p-input-icon-left">
-                    <i className="pi pi-search" />
-                    <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
-                </span>
-            </div>
-        );
-    };
-
-
+    console.log(col, '111111111111111111111111111111');
+    const arr=col
+    const header = renderHeader();
+    console.log(data,"ssss+sssssssss");
     return (
         <div className="card">
-            <Toast ref={toast} />
-            
-            <DataTable value={data} selection={selectedProducts} onSelectionChange={(e) => setSelectedProducts(e.value)} paginator showGridlines rows={10} loading={loading} dataKey="idUser"
-                filters={filters} globalFilterFields={['userFirstName', 'country.name', 'representative.name', 'balance', 'status']} header={header}>
-                <Column selectionMode="multiple" exportable={false}></Column>
-                {col.length > 0 && col.map((item, index) => {
-
-                    return (
-
-                        <Column key={index} field="name" header={item} filterField="representative" showFilterMatchModes={false} filterMenuStyle={{ width: '14rem' }} bodyStyle={{ minWidth: '8rem', fontSize: '12' }}
-                            body={(rowData) => representativeBodyTemplate(rowData, item)} filter filterElement={representativeFilterTemplate} />
-                    )
-                })}
-
+            <DataTable value={data} paginator showGridlines rows={10} loading={loading} dataKey="id"
+                filters={filters} globalFilterFields={['name', 'country.name', 'representative.name', 'balance', 'status']} header={header}
+                >
+                {col.length>0&&col.map((item) => {
+                    return(
+                       
+                    <Column field="name" header={"item"} filterField="representative" showFilterMatchModes={false} filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '14rem' }}
+                        body={representativeBodyTemplate} filter filterElement={representativeFilterTemplate} />
+               ) })}
+                {/* <Column field="name" header="Name" filter filterPlaceholder="Search by name" style={{ minWidth: '12rem' }} />
+            <Column header="Country" filterField="country.name" style={{ minWidth: '12rem' }} body={countryBodyTemplate}
+                filter filterPlaceholder="Search by country" filterClear={filterClearTemplate} 
+                filterApply={filterApplyTemplate} filterFooter={filterFooterTemplate} />
+            <Column header="Agent" filterField="representative" showFilterMatchModes={false} filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '14rem' }}
+                body={representativeBodyTemplate} filter filterElement={representativeFilterTemplate} />
+            <Column header="Date" filterField="date" dataType="date" style={{ minWidth: '10rem' }} body={dateBodyTemplate} filter filterElement={dateFilterTemplate} />
+            <Column header="Balance" filterField="balance" dataType="numeric" style={{ minWidth: '10rem' }} body={balanceBodyTemplate} filter filterElement={balanceFilterTemplate} />
+            <Column field="status" header="Status" filterMenuStyle={{ width: '14rem' }} style={{ minWidth: '12rem' }} body={statusBodyTemplate} filter filterElement={statusFilterTemplate} />
+            <Column field="activity" header="Activity" showFilterMatchModes={false} style={{ minWidth: '12rem' }} body={activityBodyTemplate} filter filterElement={activityFilterTemplate} />
+            <Column field="verified" header="Verified" dataType="boolean" bodyClassName="text-center" style={{ minWidth: '8rem' }} body={verifiedBodyTemplate} filter filterElement={verifiedFilterTemplate} /> */}
             </DataTable>
         </div>
     );

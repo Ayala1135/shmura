@@ -9,7 +9,7 @@ import RequestContent from './Components/RequestContent';
 import Rejections from './Components/Rejections';
 import BreadCrumbs from './Components/BreadCrumbs';
 import MainTitle from './Components/MainTitle';
-import SubMenu from './Components/SubMenu';
+import SubMenu from './Components/SubMenuUsers';
 import SideBar from './Components/SideBar';
 import LoadTable from './Components/LoadTable';
 import SecretaryScreen from './Components/Screens/SecretaryScreen';
@@ -21,7 +21,10 @@ import PresentUserScreen from './Components/Screens/PresentUserScreen';
 import AttendanceScreen from './Components/Screens/AttendanceScreen';
 import PresentPaymentScreen from './Components/Screens/PresentPaymentScreen';
 import AboutUsScreen from './Components/Screens/AboutUsScreen';
-import TableHeader from './Components/TableHeader';
+import UserPersonalAreaScreen from './Components/Screens/UserPersonalAreaScreen';
+import PresentEventsScreen from './Components/Screens/PresentEventsScreen';
+import PresentAttendanceScreen from './Components/Screens/PresentAttendanceScreen';
+import PresentTaskScreen from './Components/Screens/PresentTaskScreen';
 
 // import { Sidebar } from 'primereact/sidebar';
 
@@ -48,8 +51,17 @@ function App() {
           <Route exact path='Sign' element={<SignUpScreen/>}></Route>
 
           <Route exact path='PresentUsers' element={<PresentUserScreen/>}></Route>
-          <Route exact path='TableHeader' element={<TableHeader/>}></Route>
           <Route exact path='PresentPayments' element={<PresentPaymentScreen/>}></Route>
+          <Route exact path='PresentEvents' element={<PresentEventsScreen/>}></Route>
+          <Route exact path='PresentAttendance' element={<PresentAttendanceScreen/>}></Route>
+          <Route exact path='PresentTask' element={<PresentTaskScreen/>}></Route>
+
+
+
+          
+          <Route exact path='UserPersonalArea' element={<UserPersonalAreaScreen/>}></Route>
+
+
 
 
           {/* <Route exact path='/EventPresent' element={< EventPresent />}></Route> */}

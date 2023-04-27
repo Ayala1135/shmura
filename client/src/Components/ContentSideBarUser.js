@@ -1,11 +1,13 @@
-
 import React from 'react'; 
 import { Menu } from 'primereact/menu';
 import { Toast } from 'primereact/toast';
 import { Avatar } from 'primereact/avatar';
+import { useNavigate } from "react-router-dom"
+
 
 export default function ContentSideBarUser() {
     // const toast = useRef<Toast>(null);
+    const navigate = useNavigate();
     let items = [
         { template: (item, options) => {
             return (
@@ -22,7 +24,7 @@ export default function ContentSideBarUser() {
         { label: 'הרשמה לאירוע', icon: 'pi pi-calendar-plus' },
         { label: 'העדפות דיוורים', icon: 'pi pi-send', url: 'https://www.responder.co.il/'},
         { label: 'פניות', icon: 'pi pi-comment' },
-      
+        { label: 'התנתקות' , icon: 'pi pi-sign-out', command:()=>{navigate("/")}}
     ];
 
     return (

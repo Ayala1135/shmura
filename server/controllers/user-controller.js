@@ -64,7 +64,7 @@ exports.createUser = async (req, res) => {
     //const { userName, userAddress, userCity, userPhone, userEmail, userRole, userPassword } = req.body;
     var newUser = await User.create(req);
     if (newUser) {
-        mails.sendEmail(req.userEmail, `${req.userFirstName} ${req.userLastName}, היקרה! נרשמת בהצלחה למערכת "שמורה במבול". נשמח לראותך...`, "🌈☔");
+        mails.sendEmail(req.userEmail, `${req.userFirstName} ${req.userLastName} היקרה! נרשמת בהצלחה למערכת "שמורה במבול". נשמח לראותך...`, "🌈☔");
         return res.status(201).json({ message: 'New user created'});
     }
     else

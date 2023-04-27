@@ -32,7 +32,7 @@ const ContentSideBarStaff = () => {
                 {
                     label: 'אירועים ופרוייקטים',
                     icon: 'pi pi-calendar',
-
+                    command:()=>{navigate("/PresentEvents")}
                 }
             ]
         },
@@ -47,7 +47,7 @@ const ContentSideBarStaff = () => {
                 {
                     label: 'מעקב נוכחות',
                     icon: 'pi pi-list',
-
+                    command:()=>{navigate("/PresentAttendance")}
                 }
             ]
         },
@@ -58,9 +58,7 @@ const ContentSideBarStaff = () => {
                 {
                     label: 'ניהול משימות',
                     icon: 'pi pi-microsoft',
-                    // command () => {
-                    //     //router.push('/fileupload');
-                    // }
+                    command:()=>{navigate("/PresentTask")}
                 }
             ]
         }
