@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Sidebar } from 'primereact/sidebar';
 import { Button } from 'primereact/button';
 import ContentSideBarStaff from './ContentSideBarStaff';
+import member_sidebar from '../Pictures-Video/member_sidebar.png'
 //import User from './User';
 
 function SideBar(props) {
@@ -33,7 +34,13 @@ function SideBar(props) {
                         icon="pi pi-arrows-h,pi pi-bars"
                     />
                     <Sidebar
-                        style={{ textAlign: 'center', width: 'fit-content', width: '-moz-fit-content' }}
+                        style={{
+                            textAlign: 'center',
+                            height:'100%',
+                            backgroundImage: `url(${member_sidebar})`,
+                            backgroundSize: 'contain',
+                            
+                        }}
                         visible={visibleRight}
                         position="right"
                         onHide={() => setVisibleRight(false)}

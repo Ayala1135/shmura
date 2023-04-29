@@ -11,8 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 html {
-  font-size: 14px;
+  font-size: 10px;
   /* text-align: right;
   direction: rtl; */
 }
@@ -21,8 +22,8 @@ body {
   /* overflow: hidden; */
   font-family: var(--font-family);
   font-weight: normal;
-  background: url(../images/manyLogos.png) left top repeat;
-  background-size: 18%;
+  /* background: url(../images/manyLogos.png) left top repeat;
+  background-size: 18%; */
   color: var(--text-color);
   left: 0;
 
@@ -38,7 +39,7 @@ body {
   border-radius: 10px;
   margin-bottom: 1rem;
   text-align: right;
-  direction: rtl; 
+  direction: rtl;
 }
 
 /* .card {
@@ -55,7 +56,7 @@ div {
   text-align: center;
 }
 
-.top-bar {
+/* .top-bar {
   position: fixed;
   margin-top: 0;
   top: 0;
@@ -64,7 +65,7 @@ div {
   height: 12px;
   background: linear-gradient(to right, #add8e6, #87cefa, #6495ed);
   transition: background-color 0.5s ease-in-out;
-}
+} */
 
 
 .header {
@@ -72,13 +73,17 @@ div {
   left: 0;
   display: flex;
   align-items: center;
-  top: 4px;
-  left: 0;
+  top: 60px;
   justify-content: space-between;
-  padding:1rem;
+  padding: 1rem;
   background-color: #fff;
-  position: relative;
-  z-index: 1;
+  width: 100%;
+  border-bottom-color: #ffc402;
+  border-bottom: solid;
+  border-top:solid;
+  border-top-color: #ffc402;
+border-color: #ffc402;
+
 }
 
 

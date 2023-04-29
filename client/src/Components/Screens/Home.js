@@ -6,12 +6,9 @@ import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
 //import 'primeflex/primeflex.css';
 import { useNavigate } from "react-router-dom"
-
 import Toolbar from '../Toolbar'
 import shmuraVideo from '../../Pictures-Video/shmuraVideo.mp4'
-import logo_shmura from '../../Pictures-Video/logo_shmura.png'
-
-
+import beck from '../../Pictures-Video/beck.png'
 import Text from '../Text';
 //import submit from '../../Pictures-Video/haskome.jpg'
 
@@ -42,12 +39,13 @@ const Home = () => {
 
     //     </>)
     return (
-        <>     
-        <Toolbar style={{ marginBottom: 0 }}/>
+        <>   
+        <img src={beck} style={{width: '100%'}}></img>
+        <Toolbar style={{ marginBottom: 0}}/>
 
           <div className="content">
             <div style={{ width: '70%', marginTop: '0em' }}>
-              <video autoPlay muted src={shmuraVideo} type="video/mp4" style={{ width: '80%', height: 'auto', objectFit: 'contain', marginTop:'0' }} />
+              <video autoPlay muted src={shmuraVideo} type="video/mp4" style={{ position: 'absolute',width: '60%', height: 'auto',  marginTop:'0', marginRight:'0', right:'0px' }} />
               <Button label="On the recommendation of Rabbi Yisrael Gans Shalit'a, president of the reserve" onClick={handleButtonClick} className="p-button-Primary" style={{ margin: "10px" }}></Button>
             </div>
             <div style={{ width: '70%', fontSize: '20px', textAlign: 'justify', position: 'relative', zIndex: '1', marginTop: '10px' }}>
