@@ -10,6 +10,7 @@ import Toolbar from '../Toolbar'
 import shmuraVideo from '../../Pictures-Video/shmuraVideo.mp4'
 import beck from '../../Pictures-Video/beck.png'
 import Text from '../Text';
+import MyGalleria from '../MyGalleria';
 //import submit from '../../Pictures-Video/haskome.jpg'
 
 const Home = () => {
@@ -39,31 +40,22 @@ const Home = () => {
 
     //     </>)
     return (
-        <>   
-        <img src={beck} style={{width: '100%'}}></img>
+        <> 
         <Toolbar style={{ marginBottom: 0}}/>
+        <img src={beck} style={{width: '100%'}}></img>
+        
 
           <div className="content">
             <div style={{ width: '70%', marginTop: '0em' }}>
-              <video autoPlay muted src={shmuraVideo} type="video/mp4" style={{ position: 'absolute',width: '60%', height: 'auto',  marginTop:'0', marginRight:'0', right:'0px' }} />
-              <Button label="On the recommendation of Rabbi Yisrael Gans Shalit'a, president of the reserve" onClick={handleButtonClick} className="p-button-Primary" style={{ margin: "10px" }}></Button>
+              <video autoPlay muted src={shmuraVideo} type="video/mp4" style={{ position: 'absolute',width: '35%', height: 'auto',  marginTop:'0', marginRight:'0', right:'0px' }} />
+              <Button label="להמלצת הרב ישראל גנס, נשיא השמורה" onClick={handleButtonClick} 
+               style={{backgroundColor:'#303030' ,width: '63%', borderColor:'transparent',borderRadius:'0px',position: 'absolute',width: '64%', height: 'auto',  marginTop:'0', marginRight:'0', left:'0px'}}></Button>
             </div>
-            <div style={{ width: '70%', fontSize: '20px', textAlign: 'justify', position: 'relative', zIndex: '1', marginTop: '10px' }}>
-              <Text />
-            </div>
+            <MyGalleria style={{position: 'absolute',width: '10%', height: '120%',  marginTop:'0', marginRight:'0', right:'0px'}}></MyGalleria>
           </div>
         </>
       );
-
     
 }
 
 export default Home;
-
-
-
-
-
-
-
-

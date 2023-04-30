@@ -7,7 +7,7 @@ import ContentSideBarStaff from '../ContentSideBarStaff'
 
 export default function PresentUserScreen() {
     return(
-        <>
+        <><ContentSideBarStaff></ContentSideBarStaff>
         <Toolbar></Toolbar>
         <MainTitle title={"משתמשות"} icon={"pi pi-users"}></MainTitle>
         <SideBar content={<ContentSideBarStaff />}></SideBar>

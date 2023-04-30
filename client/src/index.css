@@ -13,7 +13,7 @@ code {
 }
 
 html {
-  font-size: 10px;
+  font-size: 13px;
   /* text-align: right;
   direction: rtl; */
 }
@@ -69,20 +69,21 @@ div {
 
 
 .header {
-  position: fixed;
+  /* position: fixed; */
   left: 0;
   display: flex;
   align-items: center;
-  top: 60px;
+  /* top: 60px; */
   justify-content: space-between;
   padding: 1rem;
+  margin: 0;
   background-color: #fff;
   width: 100%;
   border-bottom-color: #ffc402;
   border-bottom: solid;
-  border-top:solid;
+  border-top: solid;
   border-top-color: #ffc402;
-border-color: #ffc402;
+  border-color: #ffc402;
 
 }
 
@@ -94,3 +95,20 @@ border-color: #ffc402;
   align-items: center;
 
 }
+
+.p-menu {
+  width: 20rem;
+
+}
+
+.p-galleria .p-galleria-thumbnail-container {
+  background: rgba(0, 0, 0, 0.9);
+  padding: 1rem 0.25rem;
+  width:63%;
+  height: 225px;
+  left:15px;
+ max-width: fit-content;
+ position: fixed;
+ bottom: 0px;
+}
+

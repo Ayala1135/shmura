@@ -65,9 +65,9 @@ const ContentSideBarStaff = () => {
     ];
 
     return (
-        <><div style={{direction:'rtl'}}>
+        <><div style={{direction:'rtl',width: '20rem' }}>
             {/* <Toast ref={toast} /> */}
-            <Menu model={items} style={{borderColor:'white'}}/>
+            <Menu model={items} style={{backgroundColor:'transparent', borderColor:'transparent',borderWidth:'0px', position:'fixed', top:'250px', right:'0px', fontSize:'16px' ,width: '20rem'}}/>
         </div></>
     )
 }
