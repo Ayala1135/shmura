@@ -131,6 +131,5 @@ export default function SubMenu(props) {
             {/* <LoadTable data={udata}></LoadTable> */}
             {/* <LoadTableww data={udata} /> */}
         </div>
-
     )
 }
