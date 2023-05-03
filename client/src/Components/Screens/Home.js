@@ -41,7 +41,7 @@ const Home = () => {
     //     </>)
     return (
         <> 
-        <Toolbar style={{ marginBottom: 0}}/>
+        <Toolbar style={{ marginBottom: 0}} className="vertical-align-bottom"/>
         <img src={beck} style={{width: '100%'}}></img>
         
 

@@ -11,12 +11,10 @@ import BreadCrumbs from './Components/BreadCrumbs';
 import MainTitle from './Components/MainTitle';
 import SubMenu from './Components/SubMenuUsers';
 import SideBar from './Components/SideBar';
-import LoadTable from './Components/LoadTable';
-import SecretaryScreen from './Components/Screens/SecretaryScreen';
-import TimeAttendance from './Components/TimeAttendance';
+import LoadTable from './Components/LoadTable';import TimeAttendance from './Components/TimeAttendance';
 import LoginScreen from './Components/Screens/LoginScreen';
 import SignUpScreen from './Components/Screens/SignUpScreen';
-import RequestContentScreen from './Components/Screens/RequestContentScreen';
+
 import PresentUserScreen from './Components/Screens/PresentUserScreen';
 import AttendanceScreen from './Components/Screens/AttendanceScreen';
 import PresentPaymentScreen from './Components/Screens/PresentPaymentScreen';
@@ -26,6 +24,7 @@ import PresentAttendanceScreen from './Components/Screens/PresentAttendanceScree
 import PresentTaskScreen from './Components/Screens/PresentTaskScreen';
 
 import PersonalEreaScreen from './Components/Screens/PersonalEreaScreen';
+import NewRequest from './Components/NewRequest';
 
 
 
@@ -41,14 +40,11 @@ function App() {
           {/* <Route exact path='/LoadTable' element={< LoadTable />}></Route> */}
           <Route exact path='Login' element={<LoginScreen/>}></Route>
           <Route exact path='SignUp' element={<SignUpScreen/>}></Route>
-          <Route exact path='RequestContent' element={<RequestContentScreen/>}></Route>
           <Route exact path='AboutUs' element={<AboutUsScreen/>}></Route>
           
           <Route exact path='SideBar' element={<SideBar/>}></Route>
           
 
-
-          
           <Route exact path='Attendance' element={<AttendanceScreen/>}></Route>
 
           <Route exact path='Sign' element={<SignUpScreen/>}></Route>
@@ -62,12 +58,7 @@ function App() {
           <Route exact path='PresentPersonal' element={<PersonalEreaScreen/>}></Route>
 
 
-
-
-
-
-          
-         
+          <Route exact path='nr' element={<NewRequest/>}></Route>
 
 
 

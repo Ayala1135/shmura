@@ -1,6 +1,7 @@
 import { TabMenu } from 'primereact/tabmenu';
 import {useNavigate} from "react-router-dom"
-import logo_shmura from '../Pictures-Video/logo_shmura.png'
+//import logo_shmura from '../Pictures-Video/logo_shmura.png'
+import logoShmura from '../Pictures-Video/logoShmura.png'
 
 
 export default function Toolbar() {
@@ -16,8 +17,8 @@ export default function Toolbar() {
     return (
         <>
         <div className="header">
-        <img src={logo_shmura} alt="logo" className="logo" style={{ width: '8%', height:'8%'  }} />
-                <TabMenu model={items} style={{ marginBottom: 0,  height:'40%', fontSize:'10px', direction :'rtl'}} />
+        <img src={logoShmura} alt="logo" className="logo" style={{ width: '8%', height:'8%'  }} />
+                <TabMenu model={items} style={{ marginBottom: 0,  height:'40%', fontSize:'13px', direction :'rtl'}} className="vertical-align-bottom"/>
             </div>
          </>
 

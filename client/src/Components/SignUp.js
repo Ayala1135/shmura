@@ -35,7 +35,7 @@ export default function SignUp() {
 
 
   return (<>
- 
+
 
     <div className="card mr-8 ml-8 mt-8  shadow-8  surface-card  p-7 border-round-sm h-400rem w-80rem flex justify-content-center">
       <div className="formgrid grid grid">
@@ -81,7 +81,7 @@ export default function SignUp() {
           <InputText onChange={(e) => onChange("userLastName", e.target.value)} className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
         </div>
 
-        
+
         <div className="flex-auto field col col-4">
           <label htmlFor="number" className="block mb-2">
             טלפון נייד
@@ -148,20 +148,20 @@ export default function SignUp() {
           <InputText onChange={(e) => onChange("userStreetNumber", e.target.value)} className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
         </div>
 
-      
+
 
 
         <div className="flex-auto field col col-4">
           <label htmlFor="calendar-24h" className="block mb-2">
             תאריך לידה
           </label>
-          <Calendar style={{borderColor:'transparent',borderWidth:'0px', padding:'6.5'}} onChange={(e) => onChange("userBirthday", e.target.value)}
+          <Calendar style={{ borderColor: 'transparent', borderWidth: '0px', padding: '6.5' }} onChange={(e) => onChange("userBirthday", e.target.value)}
             className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></Calendar >
         </div>
 
 
 
-        
+
 
 
         <div className="flex-auto field col col-3">
@@ -255,11 +255,17 @@ export default function SignUp() {
           </datalist>
         </div>
 
+      
+
+
+      <div className='appearance-none outline-none focus: w-full font-bold text-gray-900 flex-auto field col col-3'>
+        <div >
+          <Button onClick={handleSubmit} label="הרשמה" icon="pi pi-user-plus" className=" bg-cyan-700 w-1 p-3 mt-6 appearance-none focus:border-primary border-cyan-700" style={{fontSize:'14px'}}></Button>
+        </div>
       </div>
 
-      {/* <div className="w-full md:w-5 flex align-items-center justify-content-center py-5">
-        <Button onClick={handleSubmit} label="הרשמה" icon="pi pi-user-plus" className="p-button-success"></Button>
-      </div> */}
+</div>
+
     </div>
 
   </>);
