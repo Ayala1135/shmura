@@ -6,7 +6,7 @@ const Op = db.Sequelize.Op;
 const User = db.user;
 const Role = db.role;
 var Excel = require('exceljs');
-const xlsx  = require('xlsx')
+const xlsx = require('xlsx')
 
 
 //get all users
@@ -15,23 +15,23 @@ exports.getAllusers = (req, res) => {
     // const file = reader.readFile('./test.xlsx')
     // const workbook = xlsx.readFile('./test.xlsx');
     // const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-    
+
     // const columnA = [];
-    
+
     // for (let z in worksheet) {
     //   if(z.toString()[0] === 'A'){
     //     columnA.push(worksheet[z].v);
     //   }
     // }
-    
+
     // console.log(columnA);
 
-//ליצור מערך של כל הכותורות הנדרשות, לעבור בפוקנציה הזאתי ולבדוק אם הרס במקום ה0 מוכל במערך, אם כן - פוש לדאטה ושליחה את הדאטה לקרייט יוזר
+    //ליצור מערך של כל הכותורות הנדרשות, לעבור בפוקנציה הזאתי ולבדוק אם הרס במקום ה0 מוכל במערך, אם כן - פוש לדאטה ושליחה את הדאטה לקרייט יוזר
     // let obj = ['דואר אלקטרוני','שם פרטי','שם משפחה','שנת סיום לימודים','מקום לימודים','מקום עבודה','תחום עבודה','עיר','טלפון']
     // let data = []
-  
+
     // const sheets = file.SheetNames
-      
+
     // for(let i = 0; i < sheets.length; i++)
     // {
     //    const temp = reader.utils.sheet_to_json(
@@ -42,12 +42,17 @@ exports.getAllusers = (req, res) => {
     //     //   console.log(res)
     //    })
     // }
-      
+
     // Printing data
-   
 
 
-    User.findAll({})
+
+    User.findAll({
+        include: [{
+            model: db.role
+        }],
+        raw: true
+    })
         .then(data => {
             res.send(data);
         })
@@ -65,7 +70,7 @@ exports.createUser = async (req, res) => {
     var newUser = await User.create(req);
     if (newUser) {
         mails.sendEmail(req.userEmail, `${req.userFirstName} ${req.userLastName} היקרה! נרשמת בהצלחה למערכת "שמורה במבול". נשמח לראותך...`, "🌈☔");
-        return res.status(201).json({ message: 'New user created'});
+        return res.status(201).json({ message: 'New user created' });
     }
     else
         return res.status(400).json({ message: 'Invalid user data received' });
@@ -119,11 +124,11 @@ exports.deleteUser = (req, res) => {
         });
 };
 
-//get all users by id
+//get users by id
 exports.findUsersById = (req, res) => {
     const currentId = req.params.id;
     var condition = currentId ? { idUser: { [Op.like]: `%${currentId}%` } } : null;
-    User.findAll({ where: condition })
+    User.findAll({include:[{model: db.role}], raw: true, where: condition })   
         .then(data => {
             res.send(data);
         })

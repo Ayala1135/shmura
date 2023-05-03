@@ -5,7 +5,12 @@ const Attendance = db.attendance;
 
 //get all attendances
 exports.getAllattendances = (req, res) => {
-    Attendance.findAll({})
+    Attendance.findAll({
+        include:[{
+            model: db.user
+        }],
+        raw: true
+    })
         .then(data => {
             res.send(data);
         })
@@ -74,6 +79,22 @@ exports.deleteAttendance = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: "Could not delete Attendance with id=" + idattendance
+            });
+        });
+};
+
+//get attendance by id
+exports.findAttendanceById = (req, res) => {
+    const currentId = req.params.id;
+    var condition = currentId ? { idUser: { [Op.like]: `%${currentId}%` } } : null;
+    Attendance.findAll({include:[{model: db.user}], raw: true, where: condition })   
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while get all users by id."
             });
         });
 };

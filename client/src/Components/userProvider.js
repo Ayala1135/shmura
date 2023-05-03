@@ -1,20 +1,26 @@
 import { useState, useEffect } from "react";
-import UserContext from './UserContext';
-//import { getUser } from '../../services/user';
+import UserContext from './userContext';
+import fetchData from '../hooks/UseGetData';
 
 
-const UserProvider = ({ children, userId }) => {
+
+const UserProvider = ({ children, idUser }) => {
 
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        if(userId){
-            //TO SERVER BY ID
-            const res = await fetchData(`http://localhost:8000/user/${userId}`)
-                setData(res)
-            
+        if (idUser) {
+            console.log(idUser);
+            fetchData(`http://localhost:8000/user/filter/${idUser}`).then(user => {
+                console.log(user);
+                setUser(user[0])
+                localStorage.setItem("user", JSON.stringify(user[0]))
+            }
+            );
+            //const res = await fetchData(`http://localhost:8000/user/${user.idUser}`)
+            //setUser(idUser)           
         }
-    }, [userId]);
+    }, [idUser]);
 
     return (
         <UserContext.Provider value={user}>

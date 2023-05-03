@@ -1,16 +1,13 @@
 import { TabMenu } from 'primereact/tabmenu';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import LoadTable from './LoadTable';
 import fetchData from '../hooks/UseGetData';
 import LoadTableww from './LoadTable copy';
 import yuseDataTable from './DataTable';
-import UserContext from './userContext';
-
 
 
 export default function SubMenu(props) {
-    const user = useContext(UserContext);
 
     const columns1 = [
         {
@@ -22,40 +19,57 @@ export default function SubMenu(props) {
             },
         },
         {
-            name: "user.userFirstName",
-            label: "שם פרטי",
+            name: "paymentType",
+            label: "סוג תשלום",
             options: {
                 filter: true,
                 sort: true,
             },
         },
         {
-            name: "userLastName",
-            label: "שם משפחה",
+            name: "startPayment",
+            label: "תאריך תחילת תשלום",
             options: {
                 filter: true,
                 sort: true,
             },
         },
         {
-            name: "dateAttendance",
-            label: "תאריך",
+            name: "endPayment",
+            label: "תאריך סוף תשלום",
+            options: {
+                filter: true,
+                sort: true,
+            },
+        },
+
+        {
+            name: "statuspayment.paymentDescription",
+            label: "סטטוס תשלום",
             options: {
                 filter: true,
                 sort: true,
             },
         },
         {
-            name: "startAttendance",
-            label: "שעת התחלה",
+            name: "idProject",
+            label: "קוד פרויקט לתשלום",
             options: {
                 filter: true,
                 sort: true,
             },
         },
         {
-            name: "endAttendance",
-            label: "שעת סיום",
+            name: "project.descriptionProject",
+            label: "מטרת התשלום",
+            options: {
+                filter: true,
+                sort: true,
+            },
+        },
+        {
+            name: "amountPayment",
+            label: "סכום לתשלום",
             options: {
                 filter: true,
                 sort: true,
@@ -88,11 +102,7 @@ export default function SubMenu(props) {
     const loadMyData = async (num) => {
         try {
             if (num == 1) {
-                const res = null;
-                if (user.idRole == "1")
-                    res = await fetchData('http://localhost:8000/attendance')
-                else
-                    res = await fetchData('http://localhost:8000/attendance/filter/${user.idUser}')
+                const res = await fetchData('http://localhost:8000/payment')
                 setData(res)
             }
             // if (num == 2) {

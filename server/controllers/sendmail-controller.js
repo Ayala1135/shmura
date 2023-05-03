@@ -5,7 +5,10 @@ const Sendmail = db.sendmail;
 
 //get all sendmails
 exports.getAllsendmails = (req, res) => {
-    Sendmail.findAll({})
+    Sendmail.findAll({
+        include:[{model: db.user},{model: db.payment}],        
+        raw: true
+    })
         .then(data => {
             res.send(data);
         })

@@ -17,17 +17,27 @@ export default function SignUp() {
   };
   const handleSubmit = async () => {
     //try {
-    fetchDataWithParams('http://localhost:8000/auth/register', objSignUp);
-    save();
-    //}
-    // catch (error) {
-    //   console.log(reportError(error));
-    //   alert(error)
-    // }
-
+    // var res = await fetch('http://localhost:8000/auth/register',{
+    //   Method: 'POST',
+    //   // Headers: {
+    //   //   Accept: 'application.json',
+    //   //   'Content-Type': 'application/json'
+    //   // },
+    //   Body: objSignUp,
+    // })
+    const res = fetchDataWithParams('http://localhost:8000/auth/register', objSignUp);
+    console.log(res);
+    if (res == "1")
+    {
+      alert("דואר אלקטרוני זה כבר קיים במערכת")
+    }
+    else 
+    {
+      save();
+    }
   }
   const onChange = (key, selected) => {
-    debugger
+    //debugger
     console.log(objSignUp)
     setObjSignUp((prev) => ({ ...prev, [key]: selected }));
   }
@@ -35,8 +45,6 @@ export default function SignUp() {
 
 
   return (<>
-
-
     <div className="card mr-8 ml-8 mt-8  shadow-8  surface-card  p-7 border-round-sm h-400rem w-80rem flex justify-content-center">
       <div className="formgrid grid grid">
         <Toast ref={toast}></Toast>
@@ -80,7 +88,6 @@ export default function SignUp() {
           </label>
           <InputText onChange={(e) => onChange("userLastName", e.target.value)} className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
         </div>
-
 
         <div className="flex-auto field col col-4">
           <label htmlFor="number" className="block mb-2">
@@ -132,8 +139,6 @@ export default function SignUp() {
             </option></datalist>
         </div>
 
-
-
         <div className="flex-auto field col col-2">
           <label htmlFor="alphabetic" >
             רחוב
@@ -148,9 +153,6 @@ export default function SignUp() {
           <InputText onChange={(e) => onChange("userStreetNumber", e.target.value)} className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
         </div>
 
-
-
-
         <div className="flex-auto field col col-4">
           <label htmlFor="calendar-24h" className="block mb-2">
             תאריך לידה
@@ -158,11 +160,6 @@ export default function SignUp() {
           <Calendar style={{ borderColor: 'transparent', borderWidth: '0px', padding: '6.5' }} onChange={(e) => onChange("userBirthday", e.target.value)}
             className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></Calendar >
         </div>
-
-
-
-
-
 
         <div className="flex-auto field col col-3">
           <label htmlFor="alphanumeric" className="block mb-2">
@@ -226,14 +223,12 @@ export default function SignUp() {
           <InputText onChange={(e) => onChange("userGraduationYear", e.target.value)} className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
         </div>
 
-
         <div className="flex-auto field col col-3">
           <label htmlFor="alphanumeric" >
             מקום עבודה
           </label>
           <InputText onChange={(e) => onChange("userJob", e.target.value)} className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
         </div>
-
 
         <div className="flex-auto field col col-3">
           <label htmlFor="alphanumeric" >תחום
@@ -254,9 +249,6 @@ export default function SignUp() {
             <option value="ייעוץ וטיפול"></option>
           </datalist>
         </div>
-
-      
-
 
       <div className='appearance-none outline-none focus: w-full font-bold text-gray-900 flex-auto field col col-3'>
         <div >

@@ -11,6 +11,8 @@ paymentRouter.post("/",paymentController.createPayment);
 paymentRouter.put("/",paymentController.updatePayment);
 //delete Payment by ID
 paymentRouter.delete("/",paymentController.deletePayment);
+//get all payments by id user
+paymentRouter.get("/filter/:id",paymentController.findpaymentsByIdUser);
 
 //get all statuspayments
 paymentRouter.get("/statusPayment", paymentController.getAllstatuspayments);

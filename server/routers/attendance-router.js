@@ -11,6 +11,8 @@ attendanceRouter.post("/",attendanceController.createAttendance);
 attendanceRouter.put("/",attendanceController.updateAttendance);
 //delete Attendance by ID
 attendanceRouter.delete("/",attendanceController.deleteAttendance);
+//get attendance by id
+attendanceRouter.get("/filter/:id",attendanceController.findAttendanceById);
 
 
 

@@ -1,7 +1,42 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
+import { Toolbar } from 'primereact/toolbar';
+import { Toast } from 'primereact/toast';
+import { Button } from 'primereact/button';
 
 const yuseDataTable = (data, columns, options, tableName, exportData) => {
+  let index = 0
+  let arr = []
+  columns.forEach((obj) => { arr.push(obj.label) })
+  console.log("++++++++++", arr);
+  let emptyProduct = {}
+  arr.forEach((key) => { emptyProduct[key] = null })
+  console.log("---------", emptyProduct);
+
+  const leftToolbarTemplate = () => {
+    return (
+      <div className="flex flex-wrap gap-2">
+        <Button label="הוספת רשומה חדשה" icon="pi pi-plus" onClick={openNew} />
+        {/* <Button label="מחיקת רשומה" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedProducts || !selectedProducts.length} /> */}
+      </div>
+    );
+  };
+  // const [products, setProducts] = useState(null);
+  // const [product, setProduct] = useState(emptyProduct);
+  // const [submitted, setSubmitted] = useState(false);
+  // const [productDialog, setProductDialog] = useState(false);
+
+  //   useEffect(() => {
+  //     ProductService.getProducts().then((data) => setProducts(data));
+  // }, []);
+
+
+  const openNew = () => {
+    // setProduct(emptyProduct);
+    // setSubmitted(false);
+    // setProductDialog(true);
+  };
+  
   const deletedRows = new Set();
   data.forEach((item, index) => {
     if (
@@ -32,7 +67,7 @@ const yuseDataTable = (data, columns, options, tableName, exportData) => {
     textLabels: {
       body: {
         noMatch: "לא נמצאו תוצאות",
-        toolTip: "Sort",
+        toolTip: "מיון",
       },
       pagination: {
         next: "דף הבא",
@@ -64,14 +99,15 @@ const yuseDataTable = (data, columns, options, tableName, exportData) => {
       },
     },
   };
-  return (
+  return (<>
+    <Toolbar className="mb-4" left={leftToolbarTemplate}></Toolbar>
     <MUIDataTable
       title={tableName}
       data={data}
       columns={columns}
       options={options}
     />
-  );
+  </>);
 };
 
 export default yuseDataTable;

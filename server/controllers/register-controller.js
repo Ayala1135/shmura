@@ -6,7 +6,10 @@ const StatusRegister = db.statusregister;
 
 //get all registers
 exports.getAllregisters = (req, res) => {
-    Register.findAll({})
+    Register.findAll({
+        include:[{model: db.user},{model: db.project},{model: db.statusregister}],
+        raw: true
+    })
         .then(data => {
             res.send(data);
         })
@@ -19,13 +22,13 @@ exports.getAllregisters = (req, res) => {
 };
 
 //Save new register
-exports.createRegister = async(req, res) => {
-    const{idRegister,idProject,idUser,statusRegister} = req.body;
+exports.createRegister = async (req, res) => {
+    const { idRegister, idProject, idUser, statusRegister } = req.body;
     //if(!dateAttendance)
-        //return res.status(400).json({ message: 'date Attendance is required' })
+    //return res.status(400).json({ message: 'date Attendance is required' })
     var newRegister = await Register.create(req.body);
-    if(newRegister)
-        return res.status(201).json({ message: 'New Register created'});
+    if (newRegister)
+        return res.status(201).json({ message: 'New Register created' });
     else
         return res.status(400).json({ message: 'Invalid Register data received' });
 }
@@ -79,6 +82,27 @@ exports.deleteRegister = (req, res) => {
         });
 };
 
+
+//get all register by id user
+exports.findRegisterByIdUser = (req, res) => {
+    const currentId = req.params.id;
+    var condition = currentId ? { idUser: { [Op.like]: `%${currentId}%` } } : null;
+    Register.findAll({
+        where: condition,
+        include:[{model: db.user},{model: db.project},{model: db.statusregister}],
+        raw: true
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while get all register by id user."
+            });
+        });
+};
+
 //get all statusregisters
 exports.getAllstatusregisters = (req, res) => {
     StatusRegister.findAll({})
@@ -94,13 +118,13 @@ exports.getAllstatusregisters = (req, res) => {
 };
 
 //Save new statusregister
-exports.createStatusRegister = async(req, res) => {
-    const{idStatusRegister,descriptionStatusRegister} = req.body;
+exports.createStatusRegister = async (req, res) => {
+    const { idStatusRegister, descriptionStatusRegister } = req.body;
     //if(!dateAttendance)
-        //return res.status(400).json({ message: 'date Attendance is required' })
+    //return res.status(400).json({ message: 'date Attendance is required' })
     var newStatusRegister = await StatusRegister.create(req.body);
-    if(newStatusRegister)
-        return res.status(201).json({ message: 'New StatusRegister created'});
+    if (newStatusRegister)
+        return res.status(201).json({ message: 'New StatusRegister created' });
     else
         return res.status(400).json({ message: 'Invalid StatusRegister data received' });
 }

@@ -7,6 +7,7 @@ import LoadTableww from './LoadTable copy';
 import yuseDataTable from './DataTable';
 
 
+
 export default function SubMenu(props) {
 
     const columns1 = [
@@ -70,7 +71,23 @@ export default function SubMenu(props) {
         },
         {
             name: "idUser",
-            label: "להביא שם לפי הID ",
+            label: "קוד נרשמת",
+            options: {
+                filter: true,
+                sort: true,
+            },
+        },
+        {
+            name: "user.userFirstName",
+            label: "שם פרטי",
+            options: {
+                filter: true,
+                sort: true,
+            },
+        },
+        {
+            name: "user.userLastName",
+            label: "שם משפחה",
             options: {
                 filter: true,
                 sort: true,
@@ -134,8 +151,8 @@ export default function SubMenu(props) {
     return (
         <div className="card">
             <TabMenu model={items} style={{ direction: 'rtl' }} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
-            {press1 && yuseDataTable(data, columns1, options, "tableName")}
-            {press2 && yuseDataTable(data, columns2, options, "tableName")}
+            {press1 && yuseDataTable(data, columns1, options)}
+            {press2 && yuseDataTable(data, columns2, options)}
             {/* <LoadTable data={udata}></LoadTable> */}
             {/* <LoadTableww data={udata} /> */}
         </div>

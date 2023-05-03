@@ -7,7 +7,10 @@ const StatusTask = db.statustask;
 
 //get all tasks
 exports.getAlltasks = (req, res) => {
-    Task.findAll({})
+    Task.findAll({
+        include:[{model: db.user},{model: db.statustask},{model: db.typetask}],
+        raw: true
+    })
         .then(data => {
             res.send(data);
         })
@@ -20,13 +23,13 @@ exports.getAlltasks = (req, res) => {
 };
 
 //Save new Task
-exports.createTask = async(req, res) => {
-    const{idTask,idOpenUser,idDestinationUser,startTask,endTask,statusTask,typeTask,content,response} = req.body;
+exports.createTask = async (req, res) => {
+    const { idTask, idOpenUser, idDestinationUser, startTask, endTask, statusTask, typeTask, content, response } = req.body;
     //if(!dateAttendance)
-        //return res.status(400).json({ message: 'date Attendance is required' })
+    //return res.status(400).json({ message: 'date Attendance is required' })
     var newTask = await Task.create(req.body);
-    if(newTask)
-        return res.status(201).json({ message: 'New Task created'});
+    if (newTask)
+        return res.status(201).json({ message: 'New Task created' });
     else
         return res.status(400).json({ message: 'Invalid Task data received' });
 }
@@ -80,6 +83,44 @@ exports.deleteTask = (req, res) => {
         });
 };
 
+//get task by typeTask - contact
+exports.findContacts = (req, res) => {
+    Task.findAll({
+        where: { typeTask: 1 },
+        include:[{model: db.user},{model: db.statustask},{model: db.typetask}],      
+        raw: true
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while get the contacts."
+            });
+        });
+};
+
+//get all tasks by id user
+exports.findtasksByIdUser = (req, res) => {
+    const currentId = req.params.id;
+    var condition = currentId ? { idOpenUser: { [Op.like]: `%${currentId}%` } } : null;
+    Task.findAll({
+        where: condition,
+        include:[{model: db.user},{model: db.statustask},{model: db.typetask}],
+        raw: true
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while get all tasks by id user."
+            });
+        });
+};
+
 //get all typetasks
 exports.getAllTypetasks = (req, res) => {
     TypeTask.findAll({})
@@ -95,13 +136,13 @@ exports.getAllTypetasks = (req, res) => {
 };
 
 //Save new Typetask
-exports.createTypetask = async(req, res) => {
-    const{idTypetask,descriptionTypetask} = req.body;
+exports.createTypetask = async (req, res) => {
+    const { idTypetask, descriptionTypetask } = req.body;
     //if(!dateAttendance)
-        //return res.status(400).json({ message: 'date Attendance is required' })
+    //return res.status(400).json({ message: 'date Attendance is required' })
     var newTypetask = await TypeTask.create(req.body);
-    if(newTypetask)
-        return res.status(201).json({ message: 'New Typetask created'});
+    if (newTypetask)
+        return res.status(201).json({ message: 'New Typetask created' });
     else
         return res.status(400).json({ message: 'Invalid Typetask data received' });
 }
@@ -170,13 +211,13 @@ exports.getAllStatustasks = (req, res) => {
 };
 
 //Save new statustask
-exports.createStatustask = async(req, res) => {
-    const{idStatustask,descriptionStatustask} = req.body;
+exports.createStatustask = async (req, res) => {
+    const { idStatustask, descriptionStatustask } = req.body;
     //if(!dateAttendance)
-        //return res.status(400).json({ message: 'date Attendance is required' })
+    //return res.status(400).json({ message: 'date Attendance is required' })
     var newStatustask = await StatusTask.create(req.body);
-    if(newStatustask)
-        return res.status(201).json({ message: 'New Statustask created'});
+    if (newStatustask)
+        return res.status(201).json({ message: 'New Statustask created' });
     else
         return res.status(400).json({ message: 'Invalid Statustask data received' });
 }

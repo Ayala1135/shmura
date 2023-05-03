@@ -1,4 +1,4 @@
-const paymenttype = require('./paymenttype')
+const paymenttypes = require('./paymenttypes')
 const user = require('./user')
 const statuspayment = require('./statuspayment')
 const project = require('./project')
@@ -14,7 +14,7 @@ module.exports = (sequelize,DataTypes)=>{
         paymentType: {
         type: DataTypes.INTEGER,
         references: {
-            model: paymenttype,
+            model: paymenttypes,
             key: 'idpaymenttype',
             //deferrable: Deferrable.INITIALLY_IMMEDIATE
         }

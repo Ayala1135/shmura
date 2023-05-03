@@ -6,7 +6,10 @@ const LevelPermission = db.levelpermission;
 
 //get all permissions
 exports.getAllpermissions = (req, res) => {
-    Permission.findAll({})
+    Permission.findAll({
+        include:[{model: db.user},{model: db.levelpermission},{model: db.process}],
+        raw: true
+    })
         .then(data => {
             res.send(data);
         })

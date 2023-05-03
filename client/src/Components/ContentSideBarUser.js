@@ -1,11 +1,13 @@
-import React from 'react'; 
 import { Menu } from 'primereact/menu';
 import { Toast } from 'primereact/toast';
 import { Avatar } from 'primereact/avatar';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import UserContext from './userContext';
+import React, { useState , useContext} from 'react';
 
 
 export default function ContentSideBarUser() {
+    const user = useContext(UserContext);
     // const toast = useRef<Toast>(null);
     const navigate = useNavigate();
     let items = [
@@ -14,8 +16,8 @@ export default function ContentSideBarUser() {
                 <label stile={{borderColor:'white'}} className=' align-items-center'>
                     <Avatar icon='pi pi-fw pi-user' className="align-items-center"  shape="circle" />
                     <div  className="flex flex-column align direction-rtl">
-                        <span className="font-bold ">אילה בא-גד</span><br></br>
-                        <span className="text-sm">חברת שמורה</span>
+                        <span className="font-bold ">{user.userFirstName} {user.userLastName}</span><br></br>
+                        <span className="text-sm">{user.roleDescription} שמורה</span>
                     </div>
                 </label>
             )}},  

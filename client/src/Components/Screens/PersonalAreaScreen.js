@@ -8,18 +8,17 @@ import ContentSideBarUser from '../ContentSideBarUser';
 import { margin } from '@mui/system';
 import UserContext from '../userContext';
 import React, { useState , useContext} from 'react';
+import SubNenu from '../SubMenuPersonalArea'
 
 
-export default function PersonalEreaScreen() {
-
-    //const {user} = useContext(UserContext);
+export default function PersonalAreaScreen() {
+    const user = useContext(UserContext);
     return(
         <>
-        <Toolbar></Toolbar>
         <MainTitle title={"האיזור האישי שלי"} icon={"pi pi-id-card"}/>
-        <h2 style={{textAlign:'right' ,marginRight:'35px'}}>שלום </h2>
+        <h2 style={{textAlign:'right' ,marginRight:'35px'}}>שלום {user.userFirstName} {user.userLastName}</h2>
         <SideBar content={<ContentSideBarUser/>}></SideBar>
-        <PersonalMenue/>
+        <SubNenu label1={"היסטורית הרשמות לאירועים ופרוייקטים"} label2={"כל התשלומים והתרומות שלי"} label3={"הפניות שלי"}/>
         </>
     )
 }

@@ -5,7 +5,12 @@ const Partner = db.partner;
 
 //get all partners
 exports.getAllpartners = (req, res) => {
-    Partner.findAll({})
+    Partner.findAll({
+        include:[{
+            model: db.user
+        }],
+        raw: true
+    })
         .then(data => {
             res.send(data);
         })

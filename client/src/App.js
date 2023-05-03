@@ -1,5 +1,9 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+
+import { BrowserRouter as Router ,Routes, Route, Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+
 import Home from './Components/Screens/Home';
 import Login_SignUp from './Components/Login&SignUp';
 import ContentSideBarStaff from './Components/ContentSideBarStaff';
@@ -11,10 +15,12 @@ import BreadCrumbs from './Components/BreadCrumbs';
 import MainTitle from './Components/MainTitle';
 import SubMenu from './Components/SubMenuUsers';
 import SideBar from './Components/SideBar';
-import LoadTable from './Components/LoadTable';import TimeAttendance from './Components/TimeAttendance';
+import LoadTable from './Components/LoadTable';
+import SecretaryScreen from './Components/Screens/SecretaryScreen';
+import TimeAttendance from './Components/TimeAttendance';
 import LoginScreen from './Components/Screens/LoginScreen';
 import SignUpScreen from './Components/Screens/SignUpScreen';
-
+import RequestContentScreen from './Components/Screens/RequestContentScreen';
 import PresentUserScreen from './Components/Screens/PresentUserScreen';
 import AttendanceScreen from './Components/Screens/AttendanceScreen';
 import PresentPaymentScreen from './Components/Screens/PresentPaymentScreen';
@@ -22,8 +28,10 @@ import AboutUsScreen from './Components/Screens/AboutUsScreen';
 import PresentEventsScreen from './Components/Screens/PresentEventsScreen';
 import PresentAttendanceScreen from './Components/Screens/PresentAttendanceScreen';
 import PresentTaskScreen from './Components/Screens/PresentTaskScreen';
-
-import PersonalEreaScreen from './Components/Screens/PersonalEreaScreen';
+import PersonalAreaScreen from './Components/Screens/PersonalAreaScreen';
+import UserProvider from './Components/userProvider';
+import Toolbar from './Components/Toolbar';
+import ShmuraManagement from './Components/Screens/ShmuraManagement';
 import NewRequest from './Components/NewRequest';
 
 
@@ -32,61 +40,57 @@ import NewRequest from './Components/NewRequest';
 
 
 function App() {
+  const [idUser, setIdUser] = useState('');
+
+  useEffect(() => {
+    const userFromLocalStorage = localStorage.getItem("user")
+    console.log("++++++++++",userFromLocalStorage);
+    if (!userFromLocalStorage) return;
+    const parsedUser = JSON.parse(userFromLocalStorage)
+    console.log({ parsedUser });
+    setIdUser(parsedUser.idUser)
+  }, []);
+
+  const setUserIdCallback = (id) => {
+    setIdUser(id);
+  }
   return (<>
-    <Router>
-      <div className="App">
+    <UserProvider idUser={idUser}>
+        <div className="App">
+          {/* <Home></Home> */}
+        {/* {idUser === '' ? <Login_SignUp setIdUser={setUserIdCallback}></Login_SignUp> : */}
         <Routes>
-          <Route exact path='/' element={< Home />}></Route>
-          {/* <Route exact path='/LoadTable' element={< LoadTable />}></Route> */}
-          <Route exact path='Login' element={<LoginScreen/>}></Route>
-          <Route exact path='SignUp' element={<SignUpScreen/>}></Route>
-          <Route exact path='AboutUs' element={<AboutUsScreen/>}></Route>
-          
-          <Route exact path='SideBar' element={<SideBar/>}></Route>
-          
-
-          <Route exact path='Attendance' element={<AttendanceScreen/>}></Route>
-
-          <Route exact path='Sign' element={<SignUpScreen/>}></Route>
-
-          <Route exact path='PresentUsers' element={<PresentUserScreen/>}></Route>
-          <Route exact path='PresentPayments' element={<PresentPaymentScreen/>}></Route>
-          <Route exact path='PresentEvents' element={<PresentEventsScreen/>}></Route>
-          <Route exact path='PresentAttendance' element={<PresentAttendanceScreen/>}></Route>
-          <Route exact path='PresentTask' element={<PresentTaskScreen/>}></Route>
-          
-          <Route exact path='PresentPersonal' element={<PersonalEreaScreen/>}></Route>
-
-
-          <Route exact path='nr' element={<NewRequest/>}></Route>
-
-
-
-          {/* <Route exact path='/EventPresent' element={< EventPresent />}></Route> */}
-        </Routes>
-      </div>
-    </Router>
-  </>
-  );
+        {/* <Router>        */}
+           <Route exact path='/' element={< Home />}></Route>
+            <Route exact path='Login' element={<Login_SignUp setIdUser={setUserIdCallback}/>}></Route>
+            <Route exact path='SignUp' element={<SignUpScreen/>}></Route>
+            <Route exact path='RequestContent' element={<RequestContentScreen/>}></Route>
+            <Route exact path='AboutUs' element={<AboutUsScreen/>}></Route>
+            
+            <Route exact path='SideBar' element={<SideBar/>}></Route>
+            <Route exact path='Attendance' element={<AttendanceScreen/>}></Route>
+  
+            <Route exact path='Sign' element={<SignUpScreen/>}></Route>
+  
+            <Route exact path='ShmuraManagement' element={<ShmuraManagement/>}></Route>
+            <Route exact path='PresentUsers' element={<PresentUserScreen/>}></Route>
+            <Route exact path='PresentPayments' element={<PresentPaymentScreen/>}></Route>
+            <Route exact path='PresentEvents' element={<PresentEventsScreen/>}></Route>
+            <Route exact path='PresentAttendance' element={<PresentAttendanceScreen/>}></Route>
+            <Route exact path='PresentTask' element={<PresentTaskScreen/>}></Route>
+  
+            <Route exact path='UserPersonalArea' element={<PersonalAreaScreen/>}></Route>
+  
+            <Route exact path='nr' element={<NewRequest/>}></Route>
+            
+            {/* </Router>   */}
+            </Routes>
+                </div>
+      </UserProvider>
+    </>
+    );
 }
 
 export default App;
 
-{/* <div className="App">
-      <Login_SignUp/>
-      <Home />
-      <ContentSideBarStaff />
-      <ContentSideBarUser />
-      <SignUp />
-      <RrequestContent />
-      <Rejections />
-      <BreadCrumbs/>
-      <MainTitle/>
-      <SubMenu/>
-      <SideBar/>
-      <LoadTable/>
-      <TimeAttendance/>
-      {/* <SecretaryScreen/> */
-      //   </div > * /// </>}
-}
   

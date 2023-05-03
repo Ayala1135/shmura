@@ -11,6 +11,8 @@ registerRouter.post("/",registerController.createRegister);
 registerRouter.put("/",registerController.updateRegister);
 //delete Register by ID
 registerRouter.delete("/",registerController.deleteRegister);
+//get all register by id user
+registerRouter.get("/filter/:id",registerController.findRegisterByIdUser);
 
 //get all statusregisters
 registerRouter.get("/statusRegister", registerController.getAllstatusregisters);

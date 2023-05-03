@@ -11,8 +11,8 @@ userRouter.post("/",userController.createUser);
 userRouter.put("/",userController.updateUser);
 //delete User by ID
 userRouter.delete("/",userController.deleteUser);
-//get all users by id
-userRouter.get("/:id",userController.findUsersById);
+//get users by id
+userRouter.get("/filter/:id",userController.findUsersById);
 
 //get all roles
 userRouter.get("/role", userController.getAllroles);

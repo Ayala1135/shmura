@@ -1,13 +1,18 @@
 const db = require("../models/index.js");
 const { Op } = require("sequelize");
 const Payment = db.payment;
-const StatusPayment = db.statuspayment;
 const PaymentType = db.paymenttype;
+const StatusPayment = db.statuspayment;
+const User = db.user;
+
 
 
 //get all payments
 exports.getAllpayments = (req, res) => {
-    Payment.findAll({})
+    Payment.findAll({
+        include:[{model: User},{model: StatusPayment},{model: PaymentType},{model: db.project}],      
+        raw: true
+    })
         .then(data => {
             res.send(data);
         })
@@ -21,7 +26,7 @@ exports.getAllpayments = (req, res) => {
 
 //Save new payment
 exports.createPayment = async (req, res) => {
-    const { idpayment, paymentType, startPayment, endPayment, userId, paymentStatus, idProject, amountPayment } = req.body;
+    const { idpayment, paymenttype, startPayment, endPayment, userId, paymentStatus, idProject, amountPayment } = req.body;
     //if(!dateAttendance)
     //return res.status(400).json({ message: 'date Attendance is required' })
     var newPayment = await Payment.create(req.body);
@@ -78,8 +83,26 @@ exports.deletePayment = (req, res) => {
                 message: "Could not delete Payment with id=" + idpayment
             });
         });
+};
 
-
+//get all payments by id user
+exports.findpaymentsByIdUser = (req, res) => {
+    const currentId = req.params.id;
+    var condition = currentId ? { userId: { [Op.like]: `%${currentId}%` } } : null;
+    Payment.findAll({
+        where: condition,
+        include:[{model: User},{model: StatusPayment},{model: PaymentType},{model: db.project}],
+        raw: true
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while get all payments by id user."
+            });
+        });
 };
 
 //get all statuspayments

@@ -34,13 +34,14 @@ const login = async (req, res) => {
     res.send(foundUser)
 }
 const register = async (req, res) => {
-    const { userFirstName, userLastName, userStreet, userStreetNumber, userCity, userBirthday, userPhone, userEmail, userRole, userPassword, userStudyPlace, userGraduationYear, userJoiningDate, userJob, userBusiness } = req.body;
+    var { userFirstName, userLastName, userStreet, userStreetNumber, userCity, userBirthday, userPhone, userEmail, userRole, userPassword, userStudyPlace, userGraduationYear, userJoiningDate, userJob, userBusiness } = req.body;
     if (!userEmail || !userPassword)
         return res.status(400).json({ message: 'דואר אלקטרוני וסיסמה הם שדות חובה' })
     const duplicate = await User.findOne({ where: { userEmail: userEmail } })
     if (duplicate)
-        return res.status(409).json({ message: "דואר אלקטרוני זה כבר קיים במערכת" })
+        return /*res.send("1");*/res.status(409).json({ message: 'דואר אלקטרוני זה כבר קיים במערכת' })
     const hashedPwd = await bcrypt.hash(userPassword, 10);
+    userPassword=hashedPwd;
     req.body = { userFirstName, userLastName, userStreet, userStreetNumber, userCity, userBirthday, userPhone, userEmail, userRole, userPassword, userStudyPlace, userGraduationYear, userJoiningDate, userJob, userBusiness};
     userController.createUser(req.body,res);
 }

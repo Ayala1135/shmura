@@ -11,6 +11,10 @@ taskRouter.post("/",taskController.createTask);
 taskRouter.put("/",taskController.updateTask);
 //delete Task by ID
 taskRouter.delete("/",taskController.deleteTask);
+//get task by typeTask - contact
+taskRouter.get("/contact",taskController.findContacts);
+//get all tasks by id user
+taskRouter.get("/filter/:id",taskController.findtasksByIdUser);
 
 //get all typetasks
 taskRouter.get("/typeTask", taskController.getAllTypetasks);

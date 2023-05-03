@@ -81,7 +81,7 @@ exports.filter = async (req, res) =>
                 }},    
             {
                 model: db.payment,
-                //attributes: ['paymentType', 'startPayment', 'endPayment', 'userId', 'paymentStatus', 'idProject', 'amountPayment' ],
+                //attributes: ['paymenttype', 'startPayment', 'endPayment', 'userId', 'paymentStatus', 'idProject', 'amountPayment' ],
                 where: {
                     [Op.or]:[{idpayment: {[Op.eq]: req.body.idpayment}}],
                     [Op.or]:[{paymentType: {[Op.eq]: req.body.paymentType}}],

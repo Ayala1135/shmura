@@ -1,5 +1,6 @@
 const statustask = require('./statustask')
 const typetask = require('./typetask')
+const user = require('./user')
 
 
 module.exports = (sequelize, DataTypes) => {
@@ -9,8 +10,20 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true
         },
-        idOpenUser: DataTypes.INTEGER,
-        idDestinationUser: DataTypes.INTEGER,
+        idOpenUser: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: user,
+                key: 'idUser',
+            }
+        },
+        idDestinationUser: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: user,
+                key: 'idUser',
+            }
+        },
         startTask: DataTypes.DATE,
         endTask: DataTypes.DATE,
         statusTask: {
@@ -18,7 +31,6 @@ module.exports = (sequelize, DataTypes) => {
             references: {
                 model: statustask,
                 key: 'idstatustask',
-                //deferrable: Deferrable.INITIALLY_IMMEDIATE
             }
         },
         typeTask: {
