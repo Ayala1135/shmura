@@ -18,7 +18,6 @@ import SideBar from './Components/SideBar';
 import LoadTable from './Components/LoadTable';
 import SecretaryScreen from './Components/Screens/SecretaryScreen';
 import TimeAttendance from './Components/TimeAttendance';
-import LoginScreen from './Components/Screens/LoginScreen';
 import SignUpScreen from './Components/Screens/SignUpScreen';
 import RequestContentScreen from './Components/Screens/RequestContentScreen';
 import PresentUserScreen from './Components/Screens/PresentUserScreen';

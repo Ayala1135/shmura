@@ -10,7 +10,7 @@ import Toolbar from '../Toolbar'
 import shmuraVideo from '../../Pictures-Video/shmuraVideo.mp4'
 import beck from '../../Pictures-Video/beck.png'
 import Text from '../Text';
-import MyGalleria from '../MyGalleria';
+// import MyGalleria from '../MyGalleria';
 //import submit from '../../Pictures-Video/haskome.jpg'
 
 const Home = () => {
@@ -51,7 +51,7 @@ const Home = () => {
               <Button label="להמלצת הרב ישראל גנס, נשיא השמורה" onClick={handleButtonClick} 
                style={{backgroundColor:'#303030' ,width: '63%', borderColor:'transparent',borderRadius:'0px',position: 'absolute',width: '64%', height: 'auto',  marginTop:'0', marginRight:'0', left:'0px'}}></Button>
             </div>
-            <MyGalleria style={{position: 'absolute',width: '10%', height: '120%',  marginTop:'0', marginRight:'0', right:'0px'}}></MyGalleria>
+            {/* <MyGalleria style={{position: 'absolute',width: '10%', height: '120%',  marginTop:'0', marginRight:'0', right:'0px'}}></MyGalleria> */}
           </div>
         </>
       );
