@@ -1,3 +1,4 @@
+import { color } from '@mui/system';
 import { TabMenu } from 'primereact/tabmenu';
 import {useNavigate} from "react-router-dom"
 //import logo_shmura from '../Pictures-Video/logo_shmura.png'
@@ -18,7 +19,7 @@ export default function Toolbar() {
         <>
         <div className="header">
         <img src={logoShmura} alt="logo" className="logo" style={{ width: '8%', height:'8%'  }} />
-                <TabMenu model={items} style={{ marginBottom: 0,  height:'40%', fontSize:'13px', direction :'rtl'}} className="vertical-align-bottom"/>
+                <TabMenu model={items} style={{fontSize:'13px', direction :'rtl' ,color:'black'}} className="vertical-align-bottom bg-teal-700"/>
             </div>
          </>
 

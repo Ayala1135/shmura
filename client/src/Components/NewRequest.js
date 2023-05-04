@@ -24,11 +24,11 @@ export default function NewRequest() {
   return (<>
 
 
-    <div className="card fixed px-8 w-6 ml-8 mt-8  shadow-8  surface-card  p-7 border-round-sm h-400rem w-80rem flex justify-content-center">
+    <div className="card fixed px-8 w-6 m-auto ml-8 mt-8  shadow-8  surface-card  p-7 border-round-sm h-400rem w-80rem flex justify-content-center">
       <div className="field">
         <Toast ref={toast}></Toast>
 
-        <div className='appearance-none outline-none focus:border-primary w-full font-bold text-gray-900 flex-auto field col col-6'>
+        <div className='appearance-none outline-none focus:border-bg-yellow-500 w-full font-bold text-gray-900 flex-auto field col col-6'>
           <h2 style={{ textAlign: 'right' }}>
             טופס פנייה לשמורה
           </h2>

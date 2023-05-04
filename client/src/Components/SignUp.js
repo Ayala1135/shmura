@@ -45,7 +45,7 @@ export default function SignUp() {
 
 
   return (<>
-    <div className="card mr-8 ml-8 mt-8  shadow-8  surface-card  p-7 border-round-sm h-400rem w-80rem flex justify-content-center">
+    <div className="card m-auto mt-8  shadow-8  surface-card  p-7 border-round-sm h-400rem flex justify-content-center" style={{width:'40%'}}>
       <div className="formgrid grid grid">
         <Toast ref={toast}></Toast>
 
@@ -146,7 +146,7 @@ export default function SignUp() {
           <InputText onChange={(e) => onChange("userStreet", e.target.value)} className="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
         </div>
 
-        <div className="flex-auto field col col-1" >
+        <div className="flex-auto field col col-2" >
           <label htmlFor="integer" >
             מספר בית
           </label>
@@ -252,7 +252,7 @@ export default function SignUp() {
 
       <div className='appearance-none outline-none focus: w-full font-bold text-gray-900 flex-auto field col col-3'>
         <div >
-          <Button onClick={handleSubmit} label="הרשמה" icon="pi pi-user-plus" className=" bg-cyan-700 w-1 p-3 mt-6 appearance-none focus:border-primary border-cyan-700" style={{fontSize:'14px'}}></Button>
+          <Button onClick={handleSubmit} label="הרשמה" icon="pi pi-user-plus" className=" bg-cyan-700 w-2 p-3 mt-6 appearance-none focus:border-primary border-cyan-700" style={{fontSize:'14px'}}></Button>
         </div>
       </div>
 
@@ -260,5 +260,5 @@ export default function SignUp() {
 
     </div>
 
-  </>);
+  </>)
 }

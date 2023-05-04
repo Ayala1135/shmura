@@ -30,34 +30,40 @@ export default function Login_SignUp(props) {
     }
     return (<>
         <Toolbar></Toolbar>
-        <div className="card mr-8 ml-8 mt-8  shadow-8  surface-card  p-7 border-round-sm h-400rem w-80rem flex justify-content-center">
-            <div className="formgrid grid grid"><br />
-                <div className="w-full md:w-5 flex flex-column align-items-s justify-content-center gap-3 py-5"><br />
-                    <div className="flex flex-wrap justify-content-center align-items-center gap-2"><br />
+        <div className="card  mt-8  shadow-8  surface-card border-round-sm h-400rem w-30rem flex align-items-center justify-content-center m-auto" style={{ padding:'6px'}}>
+            <div className="formgrid grid grid align-items-center">
+                <div className="w-full flex flex-column justify-content-center gap-2 py-5">
+                    
+                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 ">
                         <label htmlFor="username" className="w-6rem">
                             מייל
-                        </label><br />
-                        <InputText id="username" type="text" placeholder='חשבון המייל איתו נרשמת' onChange={(e) => onChange("userEmail", e.target.value)} /><br />
-                    </div><br />
+                        </label>
+                        <InputText id="username" type="text" placeholder='חשבון המייל איתו נרשמת' onChange={(e) => onChange("userEmail", e.target.value)} />
+                    </div>
                     
                     <div className="flex flex-wrap justify-content-center align-items-center gap-2">
                         <label htmlFor="password" className="w-6rem">
                             סיסמא
-                        </label><br />
+                        </label>
                         <InputText id="password" type="password" placeholder='הסיסמה שלך' onChange={(e) => onChange("userPassword", e.target.value)} /><br />
-                    </div><br />
-                    <Button onClick={handleSubmit} label="כניסה" icon="pi pi-user" className="w-10rem mx-auto"></Button>
+                    </div>
+
+                    <Button onClick={handleSubmit} label="כניסה" icon="pi pi-user" className="w-10rem mx-auto bg-yellow-500 border-yellow-500"></Button>
+
                 </div>
 
-                <Divider layout="vertical" align="center">
-                    <div className="inline-flex align-items-center">
-                        <b>או</b>
+
+                <div className="justify-content-center m-auto">
+                <Divider layout="horizontal" align="center" className='w-25rem justify-content-center '>
+                    <div className="justify-content-center ">
+                        <b>עדיין לא נרשמת?</b>
                     </div>
                 </Divider>
+                </div>
 
 
-                <div className="w-full md:w-5 flex align-items-center justify-content-center ">
-                    <Button label="הרשמה" icon="pi pi-user-plus" onClick={() => { navigate("/Sign") }} className="p-button-success"></Button>
+                <div className="w-full flex align-items-center justify-content-center m-1 ">
+                    <Button label="הרשמה" icon="pi pi-user-plus" onClick={() => { navigate("/Sign") }} className='w-10rem mx-auto bg-cyan-700 border-cyan-700'></Button>
                 </div>
             </div>
         </div>
