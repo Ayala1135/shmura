@@ -19,7 +19,7 @@ export default function Login_SignUp(props) {
         var res = await fetchDataWithParams('http://localhost:8000/auth/login', objLogin);
         console.log(res.data.userRole);
         props.setIdUser(res.data.idUser);
-        if(res.data.userRole=="5" || res.data.userRole=="6")
+        if (res.data.userRole == "5" || res.data.userRole == "6")
             navigate("/UserPersonalArea")
         else
             navigate("/ShmuraManagement")
@@ -39,6 +39,7 @@ export default function Login_SignUp(props) {
                         </label><br />
                         <InputText id="username" type="text" placeholder='חשבון המייל איתו נרשמת' onChange={(e) => onChange("userEmail", e.target.value)} /><br />
                     </div><br />
+                    
                     <div className="flex flex-wrap justify-content-center align-items-center gap-2">
                         <label htmlFor="password" className="w-6rem">
                             סיסמא
@@ -47,19 +48,19 @@ export default function Login_SignUp(props) {
                     </div><br />
                     <Button onClick={handleSubmit} label="כניסה" icon="pi pi-user" className="w-10rem mx-auto"></Button>
                 </div>
-</div>
-                <div >
-                    <
-                    <Divider layout="vertical" className="flex md:hidden" align="center" style={{borderColor: 'gray'}}>
-                        <b>או</b>
-                    </Divider>
-                </div>
 
-                <div className="w-full md:w-5 flex align-items-center justify-content-center py-5">
+                <Divider layout="vertical" align="center">
+                    <div className="inline-flex align-items-center">
+                        <b>או</b>
+                    </div>
+                </Divider>
+
+
+                <div className="w-full md:w-5 flex align-items-center justify-content-center ">
                     <Button label="הרשמה" icon="pi pi-user-plus" onClick={() => { navigate("/Sign") }} className="p-button-success"></Button>
                 </div>
-            
+            </div>
         </div>
-        </>
+    </>
     )
 }
