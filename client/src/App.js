@@ -19,7 +19,7 @@ import LoadTable from './Components/LoadTable';
 import SecretaryScreen from './Components/Screens/SecretaryScreen';
 import TimeAttendance from './Components/TimeAttendance';
 import SignUpScreen from './Components/Screens/SignUpScreen';
-import RequestContentScreen from './Components/Screens/RequestContentScreen';
+import ContactUsScreen from './Components/Screens/ContactUsScreen';
 import PresentUserScreen from './Components/Screens/PresentUserScreen';
 import AttendanceScreen from './Components/Screens/AttendanceScreen';
 import PresentPaymentScreen from './Components/Screens/PresentPaymentScreen';
@@ -29,7 +29,6 @@ import PresentAttendanceScreen from './Components/Screens/PresentAttendanceScree
 import PresentTaskScreen from './Components/Screens/PresentTaskScreen';
 import PersonalAreaScreen from './Components/Screens/PersonalAreaScreen';
 import UserProvider from './Components/userProvider';
-import Toolbar from './Components/Toolbar';
 import ShmuraManagement from './Components/Screens/ShmuraManagement';
 import NewRequest from './Components/NewRequest';
 
@@ -63,7 +62,7 @@ function App() {
            <Route exact path='/' element={< Home />}></Route>
             <Route exact path='Login' element={<Login_SignUp setIdUser={setUserIdCallback}/>}></Route>
             <Route exact path='SignUp' element={<SignUpScreen/>}></Route>
-            <Route exact path='RequestContent' element={<RequestContentScreen/>}></Route>
+            <Route exact path='RequestContent' element={<ContactUsScreen/>}></Route>
             <Route exact path='AboutUs' element={<AboutUsScreen/>}></Route>
             
             <Route exact path='SideBar' element={<SideBar/>}></Route>

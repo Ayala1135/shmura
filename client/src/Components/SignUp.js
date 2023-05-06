@@ -251,8 +251,8 @@ export default function SignUp() {
         </div>
 
       <div className='appearance-none outline-none focus: w-full font-bold text-gray-900 flex-auto field col col-3'>
-        <div >
-          <Button onClick={handleSubmit} label="הרשמה" icon="pi pi-user-plus" className=" bg-cyan-700 w-2 p-3 mt-6 appearance-none focus:border-primary border-cyan-700" style={{fontSize:'14px'}}></Button>
+        <div className='w-full flex align-items-center justify-content-center m-1'>
+          <Button onClick={handleSubmit} label="הרשמה" icon="pi pi-user-plus" className="bg-cyan-700 p-3 mt-6 appearance-none focus:border-primary border-cyan-700" style={{fontSize:'14px'}}></Button>
         </div>
       </div>
 
