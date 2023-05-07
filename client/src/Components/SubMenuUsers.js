@@ -233,7 +233,7 @@ export default function SubMenu(props) {
 
     return (
         <div className="card">
-            <TabMenu model={items} style={{ direction: 'rtl' }} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
+            <TabMenu className='text-right mr-3rem' model={items} style={{ direction: 'rtl', marginRight:'4rem' ,marginLeft:'1rem' }} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
             {press1 && yuseDataTable(data, columns1, options, "משתמשות")}
             {press2 && yuseDataTable(data, columns2, options, "שותפות")}
             {press3 && yuseDataTable(data, columns3, options, "זכאיות מגזין")}

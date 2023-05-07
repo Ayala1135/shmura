@@ -15,10 +15,10 @@ const yuseDataTable = (data, columns, options, tableName, exportData) => {
 
   const leftToolbarTemplate = () => {
     return (
-      <div className="flex flex-wrap gap-2">
-        <Button label="הוספת רשומה חדשה" icon="pi pi-plus" onClick={openNew} />
+    <>
+        <Button label="הוספת רשומה חדשה" icon="pi pi-plus" onClick={openNew} style={{ direction: 'rtl', marginRight:'0rem' ,marginLeft:'1rem' }}/>
         {/* <Button label="מחיקת רשומה" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedProducts || !selectedProducts.length} /> */}
-      </div>
+      </>
     );
   };
   // const [products, setProducts] = useState(null);
@@ -100,8 +100,8 @@ const yuseDataTable = (data, columns, options, tableName, exportData) => {
     },
   };
   return (<>
-    <Toolbar className="mb-4" left={leftToolbarTemplate}></Toolbar>
-    <MUIDataTable
+    <Toolbar style={{ direction: 'rtl', marginRight:'4rem' ,marginLeft:'1rem' }} className="h-100%" left={leftToolbarTemplate}></Toolbar>
+    <MUIDataTable style={{ direction: 'rtl', marginRight:'4rem' ,marginLeft:'1rem' }} className="h-100% mr-12px"
       title={tableName}
       data={data}
       columns={columns}

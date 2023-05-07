@@ -11,8 +11,7 @@ export default function PresentPaymentScreen() {
     const user = useContext(UserContext);
     return(
         <>
-        <Toolbar></Toolbar>  
-        <h2 style={{textAlign:'right' ,marginRight:'35px'}}>{user.userFirstName} {user.userLastName}, {user['role.roleDescription']}</h2>  
+         <h2 className='text-right mr-3rem ' style={{backgroundColor:'var(--surface-ground)', margin:'auto'}}>{user.userFirstName} {user.userLastName}, {user['role.roleDescription']}</h2>
         <MainTitle title={"תשלומים"} icon={"pi pi-credit-card"}></MainTitle>
         <SideBar content={<ContentSideBarStaff/>}></SideBar>
         <SubMenu label1={"כל התשלומים"} label2={""}> </SubMenu>
