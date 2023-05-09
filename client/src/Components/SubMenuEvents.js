@@ -5,12 +5,22 @@ import LoadTable from './LoadTable';
 import fetchData from '../hooks/UseGetData';
 import LoadTableww from './LoadTable copy';
 import yuseDataTable from './DataTable';
+import AddNewRecordEvents from './AddNewRecordEvents';
+import AddNewRecordRegister from './AddNewRecordRegister';
 
 
 
 export default function SubMenu(props) {
 
     const columns1 = [
+        {
+            name: "idProject",
+            label: "קוד אירוע / פרויקט",
+            options: {
+                filter: true,
+                sort: true,
+            },
+        },
         {
             name: "startProject",
             label: "תאריך התחלה",
@@ -70,6 +80,14 @@ export default function SubMenu(props) {
             },
         },
         {
+            name: "project.descriptionProject",
+            label: "שם אירוע / פרויקט",
+            options: {
+                filter: true,
+                sort: true,
+            },
+        },
+        {
             name: "idUser",
             label: "קוד נרשמת",
             options: {
@@ -95,6 +113,14 @@ export default function SubMenu(props) {
         },
         {
             name: "statusRegister",
+            label: "קוד סטטוס הרשמה",
+            options: {
+                filter: true,
+                sort: true,
+            },
+        },
+        {
+            name: "statusregister.descriptionStatusRegister",
             label: "סטטוס הרשמה",
             options: {
                 filter: true,
@@ -151,7 +177,9 @@ export default function SubMenu(props) {
     return (
         <div className="card">
             <TabMenu className='text-right mr-3rem' model={items} style={{ direction: 'rtl', marginRight:'4rem' ,marginLeft:'1rem' }}  activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
-            {press1 && yuseDataTable(data, columns1, options)}
+            {press1 && <AddNewRecordEvents colu={columns1} />}
+            {press1 && (yuseDataTable(data, columns1, options))}
+            {press2 && <AddNewRecordRegister colu={columns2} />}
             {press2 && yuseDataTable(data, columns2, options)}
             {/* <LoadTable data={udata}></LoadTable> */}
             {/* <LoadTableww data={udata} /> */}

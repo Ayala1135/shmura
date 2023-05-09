@@ -30,7 +30,7 @@ export default function SubMenu(props) {
             },
         },
         {
-            name: "userLastName",
+            name: "user.userLastName",
             label: "שם משפחה",
             options: {
                 filter: true,

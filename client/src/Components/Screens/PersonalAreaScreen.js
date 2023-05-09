@@ -15,7 +15,7 @@ export default function PersonalAreaScreen() {
     const user = useContext(UserContext);
     return(
         <>
-        <Toolbar></Toolbar>
+        {/* <Toolbar></Toolbar> */}
         <MainTitle title={"האיזור האישי שלי"} icon={"pi pi-id-card"}/>
         <h2 className='text-right mr-3rem' style={{backgroundColor:'var(--surface-ground)', margin:'auto', marginRight:'4rem'}}>שלום {user.userFirstName} {user.userLastName}</h2>
         <SideBar content={<ContentSideBarUser/>}></SideBar>

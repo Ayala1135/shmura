@@ -15,7 +15,6 @@ export default function NewRequest() {
   const toast = useRef(null);
 
   const onChange = (key, selected) => {
-    debugger
     console.log(objSignUp)
     setObjSignUp((prev) => ({ ...prev, [key]: selected }));
   }

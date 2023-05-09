@@ -19,7 +19,7 @@ function SideBar(props) {
 
     return (
         <div style={{ direction: 'rtl' }}>
-            <div onMouseMove={handleMouseOver} onMouseOut={handleMouseOut}>
+            <div onMouseMove={handleMouseOver} onMouseLeave={handleMouseOut}>
                 <Button className='h-100% w-3rem 100100'
                     style={{
                         position: 'absolute',

@@ -11,8 +11,16 @@ export default function SubMenu(props) {
 
     const columns1 = [
         {
-            name: "idUser",
-            label: "קוד משתמשת",
+            name: "user.userFirstName",
+            label: "שם פרטי",
+            options: {
+                filter: true,
+                sort: true,
+            },
+        },
+        {
+            name: "user.userLastName",
+            label: "שם משפחה",
             options: {
                 filter: true,
                 sort: true,
@@ -42,7 +50,6 @@ export default function SubMenu(props) {
                 sort: true,
             },
         },
-
         {
             name: "statuspayment.paymentDescription",
             label: "סטטוס תשלום",

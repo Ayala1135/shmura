@@ -5,38 +5,6 @@ import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 
 const yuseDataTable = (data, columns, options, tableName, exportData) => {
-  let index = 0
-  let arr = []
-  columns.forEach((obj) => { arr.push(obj.label) })
-  console.log("++++++++++", arr);
-  let emptyProduct = {}
-  arr.forEach((key) => { emptyProduct[key] = null })
-  console.log("---------", emptyProduct);
-
-  const leftToolbarTemplate = () => {
-    return (
-    <>
-        <Button label="הוספת רשומה חדשה" icon="pi pi-plus" onClick={openNew} style={{ direction: 'rtl', marginRight:'0rem' ,marginLeft:'1rem' }}/>
-        {/* <Button label="מחיקת רשומה" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedProducts || !selectedProducts.length} /> */}
-      </>
-    );
-  };
-  // const [products, setProducts] = useState(null);
-  // const [product, setProduct] = useState(emptyProduct);
-  // const [submitted, setSubmitted] = useState(false);
-  // const [productDialog, setProductDialog] = useState(false);
-
-  //   useEffect(() => {
-  //     ProductService.getProducts().then((data) => setProducts(data));
-  // }, []);
-
-
-  const openNew = () => {
-    // setProduct(emptyProduct);
-    // setSubmitted(false);
-    // setProductDialog(true);
-  };
-  
   const deletedRows = new Set();
   data.forEach((item, index) => {
     if (
@@ -100,7 +68,7 @@ const yuseDataTable = (data, columns, options, tableName, exportData) => {
     },
   };
   return (<>
-    <Toolbar style={{ direction: 'rtl', marginRight:'4rem' ,marginLeft:'1rem' }} className="h-100%" left={leftToolbarTemplate}></Toolbar>
+    <Toolbar style={{ direction: 'rtl', marginRight:'4rem' ,marginLeft:'1rem' }} className="h-100%"></Toolbar>
     <MUIDataTable style={{ direction: 'rtl', marginRight:'4rem' ,marginLeft:'1rem' }} className="h-100% mr-12px"
       title={tableName}
       data={data}
