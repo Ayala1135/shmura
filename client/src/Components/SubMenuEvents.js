@@ -1,5 +1,5 @@
 import { TabMenu } from 'primereact/tabmenu';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom"
 import LoadTable from './LoadTable';
 import fetchData from '../hooks/UseGetData';
@@ -7,11 +7,11 @@ import LoadTableww from './LoadTable copy';
 import yuseDataTable from './DataTable';
 import AddNewRecordEvents from './AddNewRecordEvents';
 import AddNewRecordRegister from './AddNewRecordRegister';
-
+import { Toast } from 'primereact/toast';
 
 
 export default function SubMenu(props) {
-
+const toast = useRef(null);
     const columns1 = [
         {
             name: "idProject",
@@ -67,6 +67,18 @@ export default function SubMenu(props) {
             options: {
                 filter: true,
                 sort: true,
+            },
+        },
+        {
+            name: "",
+            label: "",
+            options: {
+                filter: false,
+                sort: false,
+            customBodyRender: (value, tableMeta)=>{
+                return <><i className='pi pi-trash' onClick={()=>{console.log(data,"data delete"); 
+                deletefunc(data[tableMeta.rowIndex]) }}></i></>
+            }
             },
         },
     ];
@@ -150,6 +162,13 @@ export default function SubMenu(props) {
     const [col, setCol] = useState([]);
 
     const navigate = useNavigate();
+    let perobj;
+    const deletefunc=async(arr)=>{
+      //  perobj= await deleteData(`??/${arr[0]}`)
+        const err=perobj.message;
+        toast.current.show({severity:'info',detail:err})
+        //setData....
+    }
 
     const loadMyData = async (num) => {
         try {
@@ -175,7 +194,7 @@ export default function SubMenu(props) {
 
 
     return (
-        <div className="card">
+        <div >
             <TabMenu className='text-right mr-3rem' model={items} style={{ direction: 'rtl', marginRight:'4rem' ,marginLeft:'1rem' }}  activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
             {press1 && <AddNewRecordEvents colu={columns1} />}
             {press1 && (yuseDataTable(data, columns1, options))}

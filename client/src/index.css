@@ -58,8 +58,16 @@ div {
   /* text-align: center; */
 }
 
+/* .col {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 0.5rem;
+} */
 
 
+.p-divider.p-divider-horizontal .p-divider-content {
+  padding: 0 0rem !important;
+}
 
 .header {
   /* position: fixed; */
